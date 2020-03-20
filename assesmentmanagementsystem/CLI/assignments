@@ -1,0 +1,405 @@
+#!/usr/bin/env python
+from datetime import datetime
+from time import sleep
+import numpy as np
+import sys
+import os
+import json
+import socket
+import logging
+import subprocess
+import getpass
+import requests
+from lxml import html
+
+TEST_LOGIN = "http://0.0.0.0:5000/testloggedin"
+SSO = "http://0.0.0.0:5000/cas/login"
+SU_ID = ""
+logging.basicConfig(level=logging.INFO)
+
+
+class vm:
+    def __init__(self):
+        self.MODIFY = "VBoxManage modifyvm {} --cpus {} --memory {} --vram {}"
+        self.ADD_SHARED_FOLDER = "VBoxManage sharedfolder add {} --name sharedFolder --hostpath {} --automount"
+        self.REMOVE_SHARED_FOLDER = (
+            "VBoxManage sharedfolder remove {} --name sharedFolder"
+        )
+        self.IMPORT_VM = "VBoxManage import {}.ova --vsys 0 --vmname {}"
+        self.EXPORT_VM = "VBoxManage export {} -o {}.ova"
+        self.START_VM = "VBoxManage startvm {}"
+        self.STOP_VM = "VBoxManage controlvm {} poweroff"
+        self.DELETE_VM = "VBoxManage unregistervm {} --delete"
+        self.CHANGE_HOST_KEY = (
+            "VBoxManage setextradata global GUI/Input/HostKeyCombination 0"
+        )
+        self.CHANGE_NAME = "VBoxManage modifyvm {} --name {}"
+        self.CHECK_RUNNING = 'VBoxManage showvminfo {} | grep -c "running (since"'
+
+    def modify(self, properties, vm_name):
+        """ Takes the name of the vm properties in json format as a parameter to modify vm """
+        cpus = properties["cpus"]
+        memory = properties["memory"]
+        vram = properties["vram"]
+        include_shared_folder = properties["sharedfolder"]["include"]
+        os.system(self.REMOVE_SHARED_FOLDER.format(vm_name))
+        if include_shared_folder == "true":
+            shared_folder_path = properties["sharedfolder"]["path"]
+            # Link a folder to the VM
+            os.system(self.ADD_SHARED_FOLDER.format(vm_name, shared_folder_path))
+        # Make modifications to the VM according to the setup file
+        os.system(self.MODIFY.format(vm_name, cpus, memory, vram))
+        # Make sure that the host key is disabled
+        os.system(self.CHANGE_HOST_KEY)
+
+    def export_vm(self, vm_name, ova_name):
+        os.system(self.EXPORT_VM.format(vm_name, ova_name))
+
+    def import_vm(self, ova_path, vm_name):
+        os.system(self.IMPORT_VM.format(ova_path, vm_name))
+
+    def start(self, vm_name):
+        os.system(self.START_VM.format(vm_name))
+        sleep(1)
+        running = subprocess.check_output(
+            'VBoxManage showvminfo {} | grep "running (since"'.format(vm_name),
+            shell=True,
+        )
+        # Tell the server that it started
+        on_time = str(running).split("since")[1].replace(")\\n", "").strip()
+        on_time = on_time.replace(")", "")
+        logging.debug("STARTED AT: " + on_time)
+        data = {"suid": SU_ID, "ass_code": vm_name, "time": on_time}
+        logging.debug(
+            session.post("http://0.0.0.0:5000/env-action/start", data=data).content
+        )
+
+    def is_running(self, vm_name):
+        """ Checks if the given VM is running """
+        try:
+            running = int(
+                subprocess.check_output(self.CHECK_RUNNING.format(vm_name), shell=True)
+            )
+        except:
+            return False
+
+        if running < 1:
+            return False
+        else:
+            return True
+
+    def shutdown(self, vm_name):
+        """ Shuts down and deletes the virtual machine """
+        off = ""
+        sleep(1)
+        if not self.is_running(vm_name):
+            logging.debug("Machine already shut down.")
+        else:
+            try:
+                logging.debug("Stopping VM")
+                os.system(self.STOP_VM.format(vm_name))
+                logging.debug("VM Stopped")
+            except Exception as e:
+                logging.error(e)
+                logging.error("Error with vm shutting down")
+        off_time = datetime.now().strftime("%Y-%m-%dT%X")
+        # Tell server that it stopped
+        logging.debug("STOPPED AT: " + off_time)
+        data = {"suid": SU_ID, "ass_code": vm_name, "time": off_time}
+        logging.debug(
+            session.post("http://0.0.0.0:5000/env-action/end", data=data).content
+        )
+
+    def kill(self, vm_name):
+        """ Delete VM from machine """
+        for i in range(5):
+            try:
+                os.system("sleep 2; {}".format(self.DELETE_VM.format(vm_name)))
+            except:
+                logging.debug("Trying to delete environment: {}".format(i))
+                continue
+            break
+
+
+class Firewall:
+    def __init__(self):
+        os.system("ufw enable")
+
+    def allow(self, target):
+        logging.info("Allow: " + target)
+        os.system("ufw allow out to {}".format(socket.gethostbyname(target)))
+        os.system("ufw allow in from {}".format(socket.gethostbyname(target)))
+
+    def block_all(self):
+        logging.info("Blocking all")
+        os.system("ufw default deny outgoing")
+        os.system("ufw default deny incoming")
+        os.system("ufw default deny routed")
+        # Allow single sign-on
+
+        # Allow website
+
+    def reset(self):
+        # Reset and disable
+        os.system("ufw --force reset")
+
+    def allow_all(self):
+        logging.info("Allowing all")
+        os.system("ufw default allow outgoing")
+        os.system("ufw default allow incoming")
+        os.system("ufw default allow routed")
+
+    def allow_stellenbosch(self):
+        logging.info("Allowing stellenbosch")
+        os.system("ufw enable")
+        os.system("ufw allow out to {}".format("146.232.0.0/16"))
+
+    def block_inetkey(self):
+        logging.info("Blocking inetkey")
+        os.system(
+            "ufw deny out to {}".format(socket.gethostbyname("inetkey.sun.ac.za"))
+        )
+        os.system(
+            "ufw deny in from {}".format(socket.gethostbyname("inetkey.sun.ac.za"))
+        )
+        os.system(
+            "ufw deny out to {}".format(socket.gethostbyname("maties2.sun.ac.za"))
+        )
+        os.system(
+            "ufw deny in from {}".format(socket.gethostbyname("maties2.sun.ac.za"))
+        )
+
+    def setup(self):
+        logging.info("Setup")
+        # Block all by default
+        self.block_all()
+        # Allow DNS
+        os.system("ufw allow out 53")
+        os.system("ufw enable")
+
+    def teardown(self):
+        # Reset defaults to allow all
+        self.allow_all()
+        # Disable
+        self.reset()
+
+
+def login(su_id, session):
+    """
+    This function attempts to log into the webapp
+    and returns whether it was successfull or not
+    """
+    login = session.get(SSO)
+    login_html = html.fromstring(login.text)
+    hidden_elements = login_html.xpath('//form//input[@type="hidden"]')
+    form = {x.attrib["name"]: x.attrib["value"] for x in hidden_elements}
+    form["username"] = su_id
+    form["password"] = getpass.getpass()
+    session.post(login.url, data=form)
+    return session.get(TEST_LOGIN).text == "true"
+
+
+def download_submissions(
+    session, ass_code, url="http://0.0.0.0:5000/download_submissions/{}"
+):
+    """
+    This downloads the files required for the submission into the current
+    directory
+    """
+    response = session.get(url.format(ass_code))
+    with open("{}_submissions.tar.bz2".format(ass_code), "wb") as file:
+        file.write(response.content)
+
+
+def submit(ass_code, path, session, url="http://0.0.0.0:5000/submit"):
+    """
+    This attempts to submit the file at the end of the given path for the given
+    assignment.
+    """
+    module_code = ass_code[:3]
+    files = {"submission_file_{}".format(ass_code): open(path, "rb")}
+    form = {"ass_code": ass_code, "module_code": module_code}
+    print(session.post(url, files=files, data=form).text)
+
+
+def download_files(session, URL="http://0.0.0.0:5000/create_assignment_cli"):
+    """
+    This dowloads the files required to create an assignment
+    """
+    response = session.get(URL)
+    if response.text == "error":
+        print("You are not authorised to do this.")
+        return
+    with open("downloaded.tar.bz2", "wb") as file:
+        file.write(response.content)
+
+
+def create_sub(session, sub, env=None, URL="http://0.0.0.0:5000/create_assignment_cli"):
+    """
+    This takes the required files from the specified paths and
+    attempts to create an assignment
+    """
+    if env != None:
+        files = {"sub.json": open(sub, "rb"), "env.json": open(env, "rb")}
+    else:
+        files = {"sub.json": open(sub, "rb")}
+    out = session.post(URL, files=files).text
+    if not out == "error":
+        print(out)
+    else:
+        print("You are not authorised to do this.")
+
+
+def download_ass_files(session, ass_code):
+    """
+    This will download the files required for the assignment.
+    """
+    URL = "http://0.0.0.0:5000/download_ass_files/{}"
+    response = session.get(URL.format(ass_code))
+    with open("{}_downloads.tar.bz2".format(ass_code), "wb") as file:
+        # Save file into current directory
+        file.write(response.content)
+
+
+def add_students_from_file(args, session):
+    URL = "http://0.0.0.0:5000/modules/manage"
+    if len(args) > 3:
+        module = args[2]
+        path = args[3]
+        students = np.genfromtxt(path).astype(int).astype(str)
+        form = {module: "on", "title": "student", "su_id": " "}
+        for su_id in students:
+            form["su_id"] = su_id
+            resp = session.post(URL, data=form)
+            if resp.status_code == 200:
+                print("Successfully added {}".format(su_id))
+            else:
+                print("Adding {} failed".format(su_id))
+
+
+def start_assignment(session, ass_code):
+    """
+    Download and execute env script
+    """
+    # Download env.json
+
+    url = "http://0.0.0.0:5000/env/{}".format(ass_code)
+    env = session.get(url).content
+    env = json.loads(env)
+    if "error" in env.keys():
+        print(env["error"])
+        return
+
+    # Firewall rules
+    firewall_rules = env["Firewall"]
+    firewall = False
+    if firewall_rules["enable"] == "true":
+        firewall = Firewall()
+        firewall.teardown()
+        firewall.setup()
+        firewall.allow_all()
+        if firewall_rules["whitelist"] == "true":
+            for website in firewall_rules["whitelist_sites"]:
+                firewall.allow(website)
+        firewall.block_all()
+        if firewall_rules["only_block_inetkey"] == "true":
+            firewall.allow_all()
+            firewall.block_inetkey()
+        else:
+            if firewall_rules["allow_sunlearn"] == "true":
+                firewall.allow_stellenbosch()
+    # configure envionment
+    machine = vm()
+    time = env["TestProperties"]["timeMinutes"]
+    properties = env["VMProperties"]
+    vm_name = ass_code
+    machine.import_vm("~/VirtualBox\\ VMs/{}".format(properties["ostype"]), vm_name)
+    if properties["sharedfolder"]["include"] == "true":
+        download_ass_files(session, ass_code)
+        # Check if directory exists
+        shared_dir = ""
+        if not os.path.exists(ass_code):
+            os.mkdir(ass_code)
+            shared_dir = ass_code
+        else:
+            shared_dir = "{}_{}".format(ass_code, datetime.now().strftime('%f'))
+            os.mkdir(shared_dir)
+        os.rename(
+            "{}_downloads.tar.bz2".format(ass_code),
+            "{}/{}_downloads.tar.bz2".format(shared_dir, ass_code),
+        )
+        properties["sharedfolder"]["path"] = os.path.abspath("./{}".format(shared_dir))
+    machine.modify(properties, vm_name)
+
+    # start environment
+    machine.start(vm_name)
+    start_time = datetime.now()
+    # Keep alive until time limit expires or VM is shutdown
+    while True:
+        if int(time) > 0:
+            # Kill vm after timelimit if limit is set
+            if (datetime.now() - start_time).seconds / 60 > int(time):
+                break
+        # kill vm after it is shutdown
+        if machine.is_running(vm_name):
+            logging.debug(
+                "Running for {} minutes".format(
+                    (datetime.now() - start_time).seconds / 60
+                )
+            )
+            sleep(5)
+        else:
+            break
+
+    machine.shutdown(vm_name)
+    machine.kill(vm_name)
+    if firewall != False:
+        firewall.teardown()
+
+
+if __name__ == "__main__":
+    args = sys.argv
+    try:
+        if len(args) > 1:
+            session = requests.Session()
+            SU_ID = args[1]
+            if not login(SU_ID, session):
+                print("Authentication Failed. Try again.")
+            else:
+                if args[2] == "submit":
+                    # Submit
+                    submit(args[4], args[3], session)
+                elif args[2] == "start":
+                    start_assignment(session, args[3])
+                    pass
+                elif args[2] == "get":
+                    # GET creation file templates
+                    download_files(session)
+                elif args[2] == "create":
+                    # POST env.json and sub.json
+                    if len(args) == 4:
+                        create_sub(session, args[3])
+                    elif len(args) == 5:
+                        create_sub(session, args[3], args[4])
+                elif args[2] == "download":
+                    # Download all submissions made
+                    download_submissions(session, args[3])
+                    pass
+                elif args[2] == "add":
+                    # Add students from a file
+                    add_students_from_file(args[1:], session)
+                    pass
+                else:
+                    # Download files from ass_code
+                    download_ass_files(session, args[2])
+
+        else:
+            print(
+                "#####################\nUsage:\n#####################\n\nStudent:\nGet Assignment: assignment <suid> <assignment code>\nSubmit Assignment: assignment <suid> submit <zip file path> <assignment code>\nStart Assignment:assignment <suid> start <assignment code>\n\nMarker:\nGet Submissions: assignment <suid> download <assignment code>\n\nLecturer:\nGet Files: assignment <suid> get\nCreate Assignment: assignment <suid> create <sub.json path> [env.json path]\nGet Submissions: assignment <suid> download <assignment code>\nAdd Students from File: assignments <suid> add <module> <student file path>"
+            )
+    except Exception as e:
+        print(e)
+        print(
+            "#####################\nUsage:\n#####################\n\nStudent:\nGet Assignment: assignment <suid> <assignment code>\nSubmit Assignment: assignment <suid> submit <zip file path> <assignment code>\nStart Assignment:assignment <suid> start <assignment code>\n\nMarker:\nGet Submissions: assignment <suid> download <assignment code>\n\nLecturer:\nGet Files: assignment <suid> get\nCreate Assignment: assignment <suid> create <sub.json path> [env.json path]\nGet Submissions: assignment <suid> download <assignment code>\nAdd Students from File: assignments <suid> add <module> <student file path>"
+        )
+

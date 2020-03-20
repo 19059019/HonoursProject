@@ -1,0 +1,17 @@
+{
+    "git": "false", 
+    "end": "2019-10-25T17:00", 
+    "description": "This is the final assignment for WB272 in 2019.", 
+    "Title": "WB272 (2019) Assignment 9", 
+    "file_name": "wb272-2019-assignment09-resources.tar.bz2", 
+    "Ass_Code": "wb2720", 
+    "module": "wb272", 
+    "download_during": "true", 
+    "environment": "false", 
+    "start": "2019-10-18T09:00", 
+    "end_pretty": "Fri 25 Oct 2019 - 17:00", 
+    "file": "true", 
+    "allowed_resubmissions": "100", 
+    "start_pretty": "Fri 18 Oct 2019 - 09:00", 
+    "allowed_late": "true"
+}

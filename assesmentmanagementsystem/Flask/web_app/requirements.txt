@@ -1,0 +1,22 @@
+certifi==2019.9.11
+chardet==3.0.4
+-e git://github.com/cameronbwhite/Flask-CAS.git@f85173938654cb9b9316a5c869000b74b008422e#egg=Flask_CAS
+Click==7.0
+configparser==4.0.2
+filelock==3.0.12
+Flask==1.1.1
+idna==2.8
+itsdangerous==1.1.0
+Jinja2==2.10.3
+MarkupSafe==1.1.1
+numpy==1.16.5
+pandas==0.24.2
+python-dateutil==2.8.0
+python-gitlab==1.12.1
+pytz==2019.3
+PyYAML==5.1.2
+requests==2.22.0
+six==1.12.0
+urllib3==1.25.6
+Werkzeug==0.16.0
+xmltodict==0.12.0

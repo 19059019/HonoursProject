@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<title>Maties - AMS</title>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <!-- <link type="text/css" rel="stylesheet" href="../static/materialize/css/materialize.css" media="screen,projection" /> -->
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Assessment Management System for the Stellenbosch University Computer Science Division" />
+
+
+</head>
+
+<style>
+    i {
+        vertical-align: middle !important;
+    }
+
+    body {
+        font-family: 'Open Sans', serif;
+        /* background-color: rgba(255, 219, 88, 0.2); */
+        background-color: rgb(201, 201, 201);
+        color: black;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+    }
+
+    label {
+        color: rgb(51, 51, 51);
+    }
+
+    .button,
+    .btn {
+        border: none;
+        text-align: center;
+        background-color: rgb(84, 26, 40) !important;
+        box-shadow: 1px 1px #888888;
+        color: rgb(201, 201, 201) !important;
+        vertical-align: middle !important;
+        border-radius: 3px;
+        padding: 10px 10px 10px 10px !important;
+        align-items: center !important;
+        -webkit-transition-duration: 0.4s;
+        transition-duration: 0.4s;
+    }
+
+    .btn:hover,
+    .button:hover {
+        background-color: rgba(84, 26, 40, 0.3) !important;
+        color: rgb(84, 26, 40) !important;
+    }
+
+    p.thick {
+        font-weight: bold;
+    }
+
+    .sidenav,
+    ul,
+    nav {
+        background-color: rgb(84, 26, 40);
+    }
+
+    a {
+        color: rgb(201, 201, 201) !important;
+    }
+
+    .collapsible .collapsible {
+        margin: 0;
+    }
+
+    .container {
+        padding-left: 150px;
+    }
+
+    p.thick {
+        font-weight: bold;
+    }
+
+    li a {
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+</style>
+
+<body>
+
+    <head>
+        <!-- <nav class="top-nav">
+                <a href="#" class="brand-logo center">Assessment Management System</a>
+        </nav> -->
+        <ul id="slide-out" class="sidenav sidenav-fixed">
+            <!-- <ul id="slide-out" class="sidenav sidenav-fixed" style="background-color:rgb(106, 184, 108)"> -->
+            <li>
+                <p class="thick" style="padding: 10px,10px,10px,10px; color: white;font-size: 150%;text-align: center;">
+                    <img src="/static/logo.png" alt="" style="max-width:100%;max-height:100%;">
+                </p>
+                <ul class="collapsible collapsible-accordion">
+                    {% if session.title %}
+                    <li><a class="collapsible-header" href="/cas/logout"><i class="material-icons"
+                                style="color: rgb(140, 151, 154);">time_to_leave</i>logout</a></li>
+                    <li><a class="collapsible-header" href="/"><i class="material-icons"
+                                style="color: rgb(140, 151, 154);">home</i>Home</a></li>
+                    {% if session.title == "lecturer" or session.title == "admin"%}
+                    <li><a class="collapsible-header" href="/create"><i class="material-icons"
+                                style="color: rgb(140, 151, 154);">create</i>Create
+                            Assignment</a></li>
+                    <li><a class="collapsible-header" href="/marking"><i class="material-icons"
+                                style="color: rgb(140, 151, 154);">check_circle</i>Automated Marking</a></li>
+                    {% endif %}
+                    <li>
+                        <a class="collapsible-header"><i class="material-icons"
+                                style="color: rgb(140, 151, 154);">library_books</i>Modules</a>
+                        <div class="collapsible-body">
+                            <ul>
+                                {% if session.title == "lecturer" or session.title == "admin"%}
+                                <li><a href="/modules/manage">Manage Modules</a></li>
+                                {% endif %}
+                                {% for module in modules %}
+                                <li><a href="/modules/{{module}}">{{module}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a class="collapsible-header" href="/assignments"><i class="material-icons"
+                                style="color: rgb(140, 151, 154);">home</i>All
+                            Assignments</a></li>
+                    {% if session.title == "lecturer" or session.title == "marker" or session.title == "admin"%}
+                    <li>
+                        <a class="collapsible-header"><i class="material-icons"
+                                style="color: rgb(140, 151, 154);">table_chart</i>Assignment Reports</a>
+                        <div class="collapsible-body">
+                            <ul>
+                                {% for ass in assignments %}
+                                <li><a href="/report/{{ass['Ass_Code']}}">{{ass['Ass_Code']}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </li>
+                    {% endif %}
+                    {% else %}
+                    <li><a class="collapsible-header" href="/cas">login</a></li>
+                    {% endif %}
+                </ul>
+            </li>
+        </ul>
+        <a href="#" data-target="slide-out" class="sidenav-trigger" style="color: rgb(84,26,40) !important;"><i
+                class="medium material-icons">menu</i></a>
+    </head>
+    <main>
+        {% if session.title %}
+        <div class="container">
+            <!-- This is where the seperate pages are inserted -->
+            {% block body %}
+            {% endblock %}
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            {% else %}
+            <h1> Please log in to make use of the assesment system </h1>
+        </div>
+        {% endif %}
+    </main>
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="../static/materialize/js/materialize.js"></script> -->
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="../static/layout.js"></script>
+    <script>
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!-- Template
+o Module
+o Title
+o Description
+o Files for download
+o Start datetime
+o End datetime
+o time limit
+o Submit
+o Allowed resubmit-->
+<div id="assignment" class="assignment">
+    <div class="col s12 m6">
+        <div class="card green darken-4">
+            <div class="card-content white-text">
+                <span id="title-module" class="card-title">Assignment Title - Module</span>
+                <label id="ass-code" style="color: gold">Assignment code - ASS_CODE</label>
+                <p id="description"><label>Description</label>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ullamcorper velit sed ullamcorper morbi. Duis ultricies
+                    lacus sed turpis tincidunt id. Nunc congue nisi vitae suscipit tellus. Malesuada fames ac turpis
+                    egestas maecenas pharetra convallis posuere. Nibh cras pulvinar mattis nunc sed. Luctus accumsan
+                    tortor posuere ac ut consequat. Libero justo laoreet sit amet cursus sit. Et magnis dis parturient
+                    montes nascetur ridiculus. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Sed
+                    elementum tempus egestas sed sed risus pretium quam. Semper quis lectus nulla at volutpat diam ut
+                    venenatis. Augue ut lectus arcu bibendum at varius. Lectus quam id leo in vitae. Posuere urna nec
+                    tincidunt praesent semper feugiat. Pharetra pharetra massa massa ultricies. Tortor dignissim
+                    convallis aenean et tortor at risus. Nibh tortor id aliquet lectus. Accumsan tortor posuere ac ut
+                    consequat semper. Id semper risus in hendrerit gravida rutrum quisque non tellus.
+                </p>
+                <p id="instructions"><label>Instructions:</label>
+                    In This section, we will include instructions on how to deal with the file downloads or how to
+                    initialize their assesment environments.
+                </p>
+                <p id="ass-start" style="color: gold">Assignment Start: <label
+                        style="color: whitesmoke">DateTime</label></p>
+                <p id="ass-end" style="color: gold">Assignment End: <label style="color: whitesmoke">DateTime</label>
+                </p>
+                <p id="ass-time" style="color: gold">Time Left: <label id="assignment-code"
+                        style="color: whitesmoke">Days, Hours,
+                        Minutes, Seconds</label></p>
+                <form method=post enctype=multipart/form-data> <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Upload Submission</span>
+                        <input type="file" name="submission_file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" name="file_path">
+                    </div>
+            </div>
+            <p style="text-align: center">
+                <label>
+                    <input type="checkbox" name="Plagiarism" />
+                    <span>
+                        I declare that I have read the SU Policy on Plagiarism,<br>and that I have abided by the
+                        rules.
+                    </span>
+                </label>
+                <br>
+                <br>
+                <input type="submit" class="button" value="Submit" style="font-size: 200%">
+            </p>
+            </form>
+        </div>
+        <div class="card-action teal darken-4">
+            <a id="file-path" href="#">Files for download</a>
+        </div>
+    </div>
+</div>
+</div>

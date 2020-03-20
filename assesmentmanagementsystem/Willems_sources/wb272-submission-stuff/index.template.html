@@ -1,0 +1,302 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="WB272 2019 | Submit" />
+	<title>WB272 2019 | Submit</title>
+	<link rel="stylesheet" href="../css/wb272.css" />
+	<link rel="stylesheet" href="../css/fira.css" />
+	<link rel="stylesheet" href="../css/font-awesome.css" />
+	<link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
+</head>
+
+<body>
+
+	<header>
+		<nav class="top-nav">
+			<h1 class="page-title"><i class="fa fa-upload"></i> Submit</h1>
+		</nav>
+		<div class="container">
+			<ul id="nav-mobile" class="side-nav fixed">
+				<li class="logo">
+					<a id="logo-container" class="brand-logo" href="/wb272/">
+						<h1>WB272</h1>
+					</a>
+				</li>
+				<li><a href="../assess/"><i class="fa fa-space fa-line-chart"></i> Assess</a></li>
+				<li><a href="../plan/"><i class="fa fa-space fa-calendar"></i> Plan</a></li>
+				<li><a href="../practise/"><i class="fa fa-space fa-pencil"></i> Practise</a></li>
+				<li><a href="../study/"><i class="fa fa-space fa-book"></i> Study</a></li>
+				<li class="active"><a href="../submit/"><i class="fa fa-space fa-upload"></i> Submit</a></li>
+			</ul>
+			<a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i
+					class="fa fa-bars"></i></a>
+		</div>
+	</header>
+
+	<main>
+		<div class="container">
+			<div class="row">
+
+				<!-- content -->
+				<div class="col s12 m9 l10">
+
+					<p class="flow-text">
+						Please go directly to your assigned assessment venue.
+					</p>
+					<p class="flow-text science-red-text">
+						<i class="fa fa-warning"></i>
+						If you do not submit from the venue to which you were assigned, you get zero for that
+						assessment.
+					</p>
+
+					<h4>Making bzip2ed archives</h4>
+
+					<p>
+						There are two ways to make the archive files you have to submit.
+					</p>
+					<ol>
+						<li>
+							Open your file manager, and navigate to the folder in which you have put your work.
+							Select the files in the file manager, and right click on the mouse.
+							From the context menu that appears, select the &ldquo;Compress&rdquo; option.
+							In the &ldquo;Compress&rdquo; box that appears, select the &ldquo;.tar.bz2&rdquo; extension,
+							and fill in the filename.
+							What you use as filename does not matter, as long as you can locate the archive file for
+							upload.
+						</li>
+						<li>
+							Assume that you have been working on Assignment X, and that you have placed your work in
+							your <code>~/assignmentx</code> directory.
+							First, change to the directory&mdash;the dollar character is the command prompt, and you do
+							not type it out:
+							<pre class="terminal">
+$ cd ~/assignmentx
+</pre>
+							Next, create an archive of all the Python files in the directory:
+							<pre class="terminal">
+$ tar cvfj assignmentx.tar.bz2 *.py
+</pre>
+							Now, you can upload this tar.bz2 file via the forms provided on this webpage.
+						</li>
+					</ol>
+
+					<h4>Running tests provided for download</h4>
+
+					<p>
+						Assume that you have been working on Assignment X, and that you have placed your work in your
+						<code>~/assignmentx</code> directory.
+					</p>
+					<ol>
+						<li>
+							Download the appropriate test archive from this webpage.
+						</li>
+						<li>
+							By default, your browser will save any downloaded files in your <code>~/Downloads</code>
+							directory.
+							Move the test archive to your assignment directory&mdash;the dollar character is the command
+							prompt, and you do not type it out:
+							<pre class="terminal">
+$ mv ~/Downloads/test-files.tar.bz2 ~/assignmentx
+</pre>
+							Of course, use the name of the downloaded file instead of <code>test-files.tar.bz2</code>.
+						</li>
+						<li>
+							Change to your assignment directory:
+							<pre class="terminal">
+$ cd ~/assignmentx
+</pre>
+						</li>
+						<li>
+							Extract the test files from the archive:
+							<pre class="terminal">
+$ tar xvfj test-files.tar.bz2
+</pre>
+						</li>
+						<li>
+							When the assignment instructions say to test your work with, for example,
+							<code>test_function.py</code>, run this test file:
+							<pre class="terminal">
+$ python3 test_function.py
+</pre>
+						</li>
+					</ol>
+
+					{% for ass in assessments %}
+					<!-- {{ ass.name }} -->
+
+					<div id="{{ ass.anchor }}" class="section scrollspy">
+
+						<h3>{{ ass.name }}</h3>
+
+						<p class="flow-text">
+							{% if ass.deadline %}
+							<strong class="science-red-text">Deadline:</strong> {{ ass.deadline | format_datetime }}
+							{% else %}
+							{{ ass.datetime.start | format_datetime }} &mdash;
+							{{ ass.datetime.duration | format_duration }}
+							{% endif %}
+							<br />
+							{% if ass.downloads %}
+							Downloads:
+							{% for download in ass.downloads %}
+							<a href="../doc/{{ download.filename }}">{{ download.name }}</a>
+							{% endfor %}
+							{% else %}
+							<span class="blue-text"><i class="fa fa-info-circle"></i> No downloads</span>
+							{% endif %}
+							{% if not ass.venues and not ass.deadline %}
+							<br />
+							<span class="blue-text"><i class="fa fa-info-circle"></i> No venue assignments yet
+								{% endif %}
+						</p>
+
+						{% if ass.venues %}
+						<p>
+							<a class="waves-effect waves-light btn modal-trigger" href="#{{ ass.anchor }}venues"><i
+									class="fa fa-group"></i> {{ ass.name }} Venues</a>
+						</p>
+						{% endif %}
+
+						<!-- submit -->
+						<div class="card-panel gold">
+							<span class="white-text">Please do not double-click the submit button.</span>
+						</div>
+
+						<div class="row">
+							<form id="{{ ass.anchor }}form" class="col s12">
+								<input type="hidden" name="identifier" value="{{ ass.anchor }}" />
+								<div class="row">
+									<div class="input-field col s6">
+										<input placeholder="student number" id="{{ ass.anchor }}form_student_number"
+											type="text" name="student_number" />
+									</div>
+									<div class="file-field input-field col s6">
+										<div class="btn waves-effect waves-light">
+											<i class="fa fa-folder-open"></i> &nbsp; Attach file
+											<input type="file" id="{{ ass.anchor }}form_file_upload"
+												name="file_upload" />
+										</div>
+										<div class="file-path-wrapper">
+											<input class="file-path validate" type="text"
+												placeholder="Bzip&rsquo;ed tar to upload" />
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s6">
+										<input type="checkbox" id="{{ ass.anchor }}form_declaration" class="filled-in"
+											name="declaration" value="yes" />
+										<label for="{{ ass.anchor }}form_declaration">
+											I declare that I have read the SU Policy on Plagiarism, and that I have
+											abided by the rules.
+										</label>
+									</div>
+									<div class="input-field col s6">
+										<button class="btn waves-effect waves-light" type="submit" name="action">
+											<i class="fa fa-send"></i> &nbsp;
+											Submit
+										</button>
+									</div>
+								</div>
+								<div id="{{ ass.anchor }}form_upload_progress" class="hide">
+									<div class="progress hidden">
+										<div class="indeterminate"></div>
+									</div>
+								</div>
+								<div id="{{ ass.anchor }}form_feedback" class="card-panel grey lighten-3">
+									<span class="science-red-text">Please remember: You are not allowed any
+										resubmissions.</span>
+								</div>
+							</form>
+						</div>
+						<!-- // submit -->
+
+					</div>
+
+					<!-- // {{ ass.name }} -->
+					{% endfor %}
+
+				</div>
+				<!-- // content -->
+
+				<!-- table of contents -->
+				<div class="col hide-on-small-only m3 l2">
+					<div class="toc-wrapper">
+						<ul class="section table-of-contents">
+							{% for ass in assessments %}
+							<li><a href="#{{ ass.anchor }}">{% if ass.deadline %}{{ ass.deadline | format_date }}{% else %}{{ ass.datetime.start | format_date }}{% endif %}
+									({{ ass.short }})</a></li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+				<!-- // table of contents -->
+
+			</div>
+		</div>
+	</main>
+	{% for ass in assessments %}
+	{% if ass.venues %}
+
+	<!-- {{ ass.name }} venues -->
+	<div id="{{ ass.anchor }}venues" class="modal modal-fixed-footer">
+		<div class="modal-content">
+			<h3>{{ ass.name }} Venues</h3>
+			{% for venue in ass.venues %}
+			<h4>{{ venue.name }} ({{ venue.students | length }} students)</h4>
+			<p>
+				<tt>
+					{{ venue.students | join('&#x2001;') }}
+				</tt>
+			</p>
+			{% endfor %}
+		</div>
+		<div class="modal-footer">
+			<a href="#{{ ass.anchor }}" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+		</div>
+	</div>
+	<!-- // {{ ass.name }} venues -->
+
+	{% endif %}
+	{% endfor %}
+
+	<footer class="page-footer">
+		<div class="container">
+			<div class="row valign-wrapper">
+				<div class="col s3 m2 l1">
+					<img src="../img/USlogo.svg" class="responsive-img" />
+				</div>
+				<div class="col s9 m10 l11">
+					<p class="white-text">
+						<a href="http://www.cs.sun.ac.za/" class="no-icon">Computer Science</a><br />
+						<a href="http://math.sun.ac.za/" class="no-icon">Department of Mathematical Sciences</a><br />
+						<a href="http://science.sun.ac.za/" class="no-icon">Faculty of Science</a><br />
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright container">
+			&copy; 2019 <a href="http://www.sun.ac.za/" class="no-icon">Stellenbosch University</a>
+		</div>
+	</footer>
+
+	<script src="../js/jquery-2.1.4.min.js"></script>
+	<script src="../js/materialize.js"></script>
+	<script src="submit.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('.toc-wrapper').pushpin({
+				top: $('nav').height()
+			});
+			$('.button-collapse').sideNav();
+			$('.scrollspy').scrollSpy();
+			$('.modal-trigger').leanModal();
+		})
+	</script>
+
+</body>
+
+</html>

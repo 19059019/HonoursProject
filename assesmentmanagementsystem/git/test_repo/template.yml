@@ -1,0 +1,13 @@
+image: python:3.5
+stages:
+- style
+- test
+style:
+  script:
+  - pip install pylint
+  - find . -iname "*.py" | xargs pylint
+  stage: style
+test:
+  script:
+  - python test_wololo.py
+  stage: test

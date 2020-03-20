@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Single Sign-on | Stellenbosch University</title>
+        <meta name="description" content="Single Sign-on Stellenbosch University">
+        <meta name="viewport" content="width=device-width">
+        <!--[if lt IE 9]>
+            <style>
+                #otherlogo-container {
+                    padding-top: 4px;
+                }
+            </style>
+        <![endif]-->
+        <!--[if IE 9]>
+            <style>
+               html { height: 100% };
+            </style>
+        <![endif]-->
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="shortcut icon" href="/cas/favicon.ico">
+        <link rel="apple-touch-icon" href="/cas/apple-touch-icon.png">
+        <!-- Use bootstrap instead of normalize - bootstrap is based on normalize... ->
+        <!--<link rel="stylesheet" href="css/normalize.css">-->
+		
+        <!--<link href="https://cdn.sun.ac.za/lib/bootstrap/2.1.0/css/bootstrap.min.css" rel="stylesheet">-->
+		<link href="/cas/cdn/bootstrap/css/bootstrap.min.css;jsessionid=AB75FC3B616374D2A23CE1AB848A78B0?v=2012.1" rel="stylesheet">
+        <!--<link href="https://cdn.sun.ac.za/lib/bootstrap/2.1.0/css/bootstrap-sun.css" rel="stylesheet">-->
+        <link href="/cas/cdn/bootstrap/css/bootstrap-sun.css;jsessionid=AB75FC3B616374D2A23CE1AB848A78B0?v=2012.1" rel="stylesheet">
+        <!--<link href="https://cdn.sun.ac.za/css/H5BP/main.css" rel="stylesheet">-->
+        <link href="/cas/cdn/css/main.css;jsessionid=AB75FC3B616374D2A23CE1AB848A78B0?v=2012.1" rel="stylesheet">
+        <link href="/cas/css/style.css;jsessionid=AB75FC3B616374D2A23CE1AB848A78B0?v=2012.1" rel="stylesheet" />
+        <!--<script src="https://cdn.sun.ac.za/js/modernizr/modernizr-2.6.1.min.js"></script>-->
+        <script src="/cas/cdn/js/modernizr-2.6.1.min.js;jsessionid=AB75FC3B616374D2A23CE1AB848A78B0?v=2012.1"></script>
+        <!--<script src="https://cdn.sun.ac.za/js/jq/jquery-1.8.1.min.js"></script>-->
+        <script src="/cas/cdn/js/jquery-1.8.1.min.js;jsessionid=AB75FC3B616374D2A23CE1AB848A78B0?v=2012.1" type="text/javascript"></script>
+        <!--<script src="https://cdn.sun.ac.za/js/mustache/mustache.js" type="text/javascript"></script>-->
+        <script src="/cas/cdn/js/mustache.js;jsessionid=AB75FC3B616374D2A23CE1AB848A78B0?v=2012.1" type="text/javascript"></script>    
+        <script src="/cas/js/sun.cas.main.js;jsessionid=AB75FC3B616374D2A23CE1AB848A78B0?v=2012.1" type="text/javascript"></script>
+        <!--[if lt IE 9]> 
+            <script src="/cas/js/respond.min.js;jsessionid=AB75FC3B616374D2A23CE1AB848A78B0?v=2012.1" type="text/javascript"></script>
+        <![endif]--> 
+        <!--[if lt IE 10]>         
+            <script src="/cas/js/jquery.sun.iedownloadhref.js;jsessionid=AB75FC3B616374D2A23CE1AB848A78B0?v=2014.1" type="text/javascript"></script>
+            <script id="IENoUpgradeTempl" type="text/template">
+                <div class="alert alert-block">
+	                <h4>Warning!</h4>Your Internet Explorer is out of date and for Windows XP or Windows Vistas there is no upgrade available.  <strong>We highly recommend</strong> that you change you browser to either Mozilla Firefox or Google Chrome to benefit from the latest technologies.<br/><br/>You can download the Google Chrome installer <a href="{{hrefgoogle}}" target="_blank">here</a> (if you are on the university network), or<br/>You can download the Mozilla Firefox installer <a href="{{hrefmoz}}" target="_blank">here</a> (if you are on the university network)<br/><br/>Alternatively, please contact the IT Service Desk to assist you.
+                </div>
+            </script>
+        <![endif]--> 
+        <!--[if lt IE 10]> 
+            <script src="/cas/js/ie_notify_ie8or9.js;jsessionid=AB75FC3B616374D2A23CE1AB848A78B0?v=2014.1" type="text/javascript"></script>
+        <![endif]--> 
+        <script src="/cas/js/cas.js;jsessionid=AB75FC3B616374D2A23CE1AB848A78B0" type="text/javascript"></script>
+    </head>
+<body>  
+    <div class="body-container">
+
+
+
+<div class="logo-container">
+</div>
+<div id="otherlogo-container" class="otherlogo-container">
+	<div class="alumnilogo-container"></div>
+	<div class="matieslogo-container"></div>
+</div>
+<form id="fm1" class="bordered-container" action="/cas/login;jsessionid=AB75FC3B616374D2A23CE1AB848A78B0?service=http%3A%2F%2F0.0.0.0%3A5000%2Fcas%2Flogin%2F%3Forigin%3D%252Fcreate_assignment_cli%253F" method="post" onsubmit="return prepareSubmit(this);">
+
+<!-- ERROR MESSAGES START -->
+
+<div id="msg"></div>
+<!-- ERROR MESSAGES END -->
+
+	<legend>Single Sign-on</legend>
+	<div class="control-group">
+		<label class="control-label" for="username"><span class="accesskey">U</span>sername:</label>
+		<div class="controls">
+			
+			
+			<input type="text" id="username" name="username" placeholder="Username" tabindex="1" />
+			
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="password"><span class="accesskey">P</span>assword:</label>
+		<div class="controls">
+			<input type="password" id="password" name="password" placeholder="Password" tabindex="2" />
+		</div>
+	</div>
+	<div class="control-group" id="submit-container">
+		<div class="controls">
+			<input type="hidden" name="lt" value="LT-3484334-hMVrHLp7Z2nM7T14d1l5sg5lFaCxEO" />
+			<input type="hidden" name="execution" value="e1s1" />
+			<input type="hidden" name="_eventId" value="submit" />
+			<input type="submit" class="btn btn-primary-sun" value="Sign In" tabindex="3" />
+		</div>
+	</div>
+	<div class="control-group" id="language-container">
+		
+		
+		
+		
+		 <label><i class="icon-thumbs-up"></i> Kliek <a href="login?service=http%3A%2F%2F0.0.0.0%3A5000%2Fcas%2Flogin%2F%3Forigin%3D%252Fcreate_assignment_cli%253F&locale=af">hier</a> vir <a href="login?service=http%3A%2F%2F0.0.0.0%3A5000%2Fcas%2Flogin%2F%3Forigin%3D%252Fcreate_assignment_cli%253F&locale=af">Afrikaans</a></label>
+	</div>
+</form>
+
+
+<div class="clearfix infoWin-container">
+	<div class="bordered-container infoWin">
+		<div class="infoWinTitle"><img src="images/emblem-important-24x24.png;jsessionid=AB75FC3B616374D2A23CE1AB848A78B0" alt="Info Logo" /><h4>Information</h4></div>
+		<ul><li>You were redirected here to identify yourself using your network credentials.</li><li>Single Sign-On (SSO) is the system which handles your logon access to participating web based applications.</li><li>Currently, SSO only supports users with a registered Stellenbosch University account.</li></ul>
+	</div>
+	<div class="bordered-container infoWin">
+		<div class="infoWinTitle"><img src="images/dialog-warning-24x24.png;jsessionid=AB75FC3B616374D2A23CE1AB848A78B0" alt="Warning Logo" /><h4>Important</h4></div>
+		<ul><li>Never save your password on a public computer (e.g. in the lab or in the internet cafe)</li><li>Never enter your university password on a site that does not have <span style="white-space: nowrap">sun.ac.za</span>, <span style="white-space: nowrap">mymaties.com</span>, or <span style="white-space: nowrap">maties.com</span> in its address.</li><li>Always <a href="/cas/logout">log out</a> and close your browser when you are finished.</li></ul>
+	</div>
+	<div class="bordered-container infoWin">
+		<div class="infoWinTitle"><img src="images/dialog-question-24x24.png;jsessionid=AB75FC3B616374D2A23CE1AB848A78B0" alt="Help Logo" /><h4>Help</h4></div>
+		<ul><li>You must use your standard user credentials. (also called "network" or "portal" login)</li><li>Forgot your password?  <a href="http://midtier.sun.ac.za/my.sun-services/tracker?linkID=1583&lang=en">Change it here</a></li><li>Need assistance? Visit the IT <a href="https://stbsp01.stb.sun.ac.za/innov/it/it-help/Wiki%20Pages/Home.aspx">Self-help Support Site</a> or call the Service Centre at <span style="white-space: nowrap">021 808 4367</span></li></ul>
+	</div>
+</div>
+
+
+        <div class="footer-container">
+            <div class="footer-icon">
+            </div>
+            <div class="footer-text">
+               All rights reserved. <span class="noWrapText">&copy; <span id="copyYear">2012</span>&nbsp;<a title="Stellenbosch University" href="http://www.sun.ac.za">Stellenbosch University</a></span>&nbsp;|&nbsp;<a href="http://www.sun.ac.za/english/Documents/Terms_and_conditions/WebTermsConditions.pdf" title="Terms of use" target="_blank" class="noWrapText">Terms of use</a>&nbsp;|&nbsp;<a href="http://blogs.sun.ac.za/it/files/2011/06/Web-regulation-approved-Eng-20-Junie-2011.pdf" title="Web regulation" class="noWrapText">Web regulation</a>
+            </div>
+        </div>
+    </div> 
+</body>
+</html>

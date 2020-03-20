@@ -1,0 +1,16 @@
+{
+    "git": "false", 
+    "end": "2019-11-22T12:00", 
+    "description": "", 
+    "Title": "Automated Marking Demonstration", 
+    "file_name": "", 
+    "Ass_Code": "wb3723", 
+    "module": "wb372", 
+    "environment": "false", 
+    "start": "2019-11-22T07:00", 
+    "end_pretty": "Fri 22 Nov 2019 - 12:00", 
+    "file": "false", 
+    "allowed_resubmissions": -1, 
+    "start_pretty": "Fri 22 Nov 2019 - 07:00", 
+    "allowed_late": "true"
+}

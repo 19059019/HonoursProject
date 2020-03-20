@@ -1,0 +1,3 @@
+#!/bin/bash
+# This should be  put into the /etc/profile file
+. /opt/link_shared.sh

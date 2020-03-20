@@ -1,0 +1,27 @@
+You are invited to take part in a study conducted by Michael Shepherd, from the Computer Science Division at Stellenbosch University. You were approached as a possible participant because you are a student of Scientific Computing 272.
+
+The purpose of this study is to create a simple and intuitive submission system for the Stellenbosch University Computer Science Division. The submission system is a part of a larger honours project that is part of the researchers honours degree.
+
+What Will be Asked of Me?
+
+If you agree to take part in this study, you will be asked to submit an assessment through the given submission system. If you do make a submission, a linked to a google form for feedback will be emailed to you.
+
+If there is an issue or you do not wish to participate in the study:
+
+The existing submission system will be available at all times. You will not be penalised in
+any way if you choose to use the existing submission system rather than this project. If you wish 
+to withdraw from the testing of this software, you will need to rather use the existing submission
+to submit this assignment. Any student who wishes to withdraw will encounter no negative
+consequences as long as they proceed to submit the assignment in question through the existing
+system.
+
+Researchers’ Contact Information:
+
+If you encounter any issues with the submission system or have any questions or concerns about this study, please feel free to contact Michael Shepherd at 19059019@sun.ac.za
+
+For a more complete version of the participation consent form, click (here)[https://hermes.cs.sun.ac.za/consent].
+
+To participate in the study, follow this link: <https://hermes.cs.sun.ac.za/modules/wb272>
+
+Otherwise, to use the existing submission system, follow this link: <Link to existing submission system>
+

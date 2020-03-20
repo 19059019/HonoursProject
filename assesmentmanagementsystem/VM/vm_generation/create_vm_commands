@@ -1,0 +1,24 @@
+# Creating a VM
+VBoxManage createvm --name [vm name] --ostype [Operating System] --register
+
+# Setting Up a VM's Properties
+VBoxManage modifyvm [vm name] --cpus [] --memory [Megabytes] --vram [Megabytes]
+
+# Configuring a Virtual Network Adapter
+VBoxManage modifyvm [vm name] --nic1 bridged --bridgeadapter1 [Networl adapter]
+
+# Attaching Virtual Media to a VM
+VBoxManage createmedium disk --filename /path/to/hard_drive_image/[vm name].vdi --size [Megabytes] --variant Standard
+VBoxManage storagectl [vm name] --name "SATA Controller" --add sata --bootable on
+VBoxManage storageattach [vm name] --storagectl "SATA Controller" --port 0 --device 0 --type hdd --medium /path/to/hard_drive_image/[vm name].vdi
+
+# Installing a Guest OS into a VM
+VBoxManage storagectl [vm name] --name "IDE Controller" --add ide
+VBoxManage storageattach [vm name] --storagectl "IDE Controller" --port 0  --device 0 --type dvddrive --medium [path to iso]
+
+# Control the vm
+VBoxManage startvm [vm name]
+VBoxManage controlvm [vm name] acpipowerbutton
+VBoxManage controlvm [vm name] poweroff
+# Remove dvd after os installed in the vm
+VBoxManage storageattach [vm name] --storagectl "IDE Controller" --port 0 --device 0 --type dvddrive --medium none 

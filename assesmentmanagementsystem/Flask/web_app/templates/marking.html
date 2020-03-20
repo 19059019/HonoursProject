@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% for error in error %}
+<script> alert("{{error}}"); </script>
+{% endfor %}
+{% block body %}
+<h1 style="text-align: center">Marking</h1>
+{% if session.title == "lecturer" or session.title == "admin" %}
+
+<form method=post enctype=multipart/form-data> <p>Assignment: </p>
+    <div class="input-field col s6" style="max-width: 20%;">
+        <select name=ass_code>
+            {% for ass in assignments %}
+            <option value="{{ass['Ass_Code']}}">{{ass['Ass_Code']}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <p>Language:</p>
+    <div class="input-field col s6" style="max-width: 20%;">
+        <select name="language">
+            <option value="python:2.7">Python 2.7</option>
+            <option value="python:3.5">Python 3.5</option>
+        </select>
+    </div>
+    <div class="file-field input-field" name="requirements_file">
+        <div class="btn">
+            <span>Requirements.txt</span>
+            <input type="file" name="requirements" accept=".txt">
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" name="requirements" required>
+        </div>
+    </div>
+    <div class="file-field input-field" name="marking">
+        <div class="btn">
+            <span>Marking script</span>
+            <input type="file" name="marking_script" accept=".py" required>
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" name="marking_script">
+        </div>
+    </div>
+
+
+    <div style="text-align:center">
+        <input type="submit" class="button" value="Mark Assignment">
+    </div>
+</form>
+<script src="../static/marking.js"></script>
+{% else %}
+<h1 style="text-align: center"> Only lecturers may make use of this feature </h1>
+{% endif %}
+{% endblock %}

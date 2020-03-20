@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1 style="text-align: center">User Management</h1>
+{% if session.title == "lecturer" or session.title == "admin" %}
+<div>
+    <h3>Add User</h3>
+    <form method="POST">
+        <div class="input-field">
+            <input id="input_text" type="text" name="su_id" data-length="10" style="max-width: 20%;">
+            <label for="input_text">SUID</label>
+        </div>
+        <label>
+            <input class="with-gap" name="title" type="radio" value="student" checked="checked" />
+            <span>Student</span>
+        </label>
+        <label>
+            <input class="with-gap" name="title" type="radio" value="marker" />
+            <span>Marker</span>
+        </label>
+        {% if session.title == "admin" %}
+        <!-- Add lecturer with module/s -->
+        <label>
+            <input class="with-gap" name="title" type="radio" value="lecturer" />
+            <span>Lecturer</span>
+        </label>
+        {% endif %}
+        <p>Module/s:</p>
+        {% for mod in modules%}
+        <p>
+            <label>
+                <input type="checkbox" name="{{mod}}" />
+                <span>{{mod}}</span>
+            </label>
+        </p>
+        {% endfor %}
+        <div style="text-align:center">
+            <input type="submit" class="button" value="Add User">
+        </div>
+    </form>
+</div>
+{% else %}
+<h1 style="text-align: center"> Only lecturers may make use of this feature </h1>
+{% endif %}
+{% endblock %}

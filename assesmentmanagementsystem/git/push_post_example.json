@@ -1,0 +1,61 @@
+{
+    "push_options": {},
+    "project_id": 5,
+    "user_id": 1,
+    "object_kind": "push",
+    "repository": {
+        "git_ssh_url": "git@192.168.1.78:wb2/wb20/19059019_wb20.git",
+        "name": "19059019_wb20",
+        "url": "git@192.168.1.78:wb2/wb20/19059019_wb20.git",
+        "git_http_url": "http://192.168.1.78/wb2/wb20/19059019_wb20.git",
+        "visibility_level": 0,
+        "homepage": "http://192.168.1.78/wb2/wb20/19059019_wb20",
+        "description": ""
+    },
+    "event_name": "push",
+    "user_name": "Administrator",
+    "after": "a4b0934719d3366683a0e003b454f62cd52fa8b0",
+    "project": {
+        "git_ssh_url": "git@192.168.1.78:wb2/wb20/19059019_wb20.git",
+        "path_with_namespace": "wb2/wb20/19059019_wb20",
+        "description": "",
+        "ci_config_path": null,
+        "avatar_url": null,
+        "url": "git@192.168.1.78:wb2/wb20/19059019_wb20.git",
+        "default_branch": "master",
+        "namespace": "wb20",
+        "git_http_url": "http://192.168.1.78/wb2/wb20/19059019_wb20.git",
+        "web_url": "http://192.168.1.78/wb2/wb20/19059019_wb20",
+        "ssh_url": "git@192.168.1.78:wb2/wb20/19059019_wb20.git",
+        "http_url": "http://192.168.1.78/wb2/wb20/19059019_wb20.git",
+        "visibility_level": 0,
+        "homepage": "http://192.168.1.78/wb2/wb20/19059019_wb20",
+        "id": 5,
+        "name": "19059019_wb20"
+    },
+    "user_username": "root",
+    "total_commits_count": 1,
+    "commits": [
+        {
+            "added": [
+                "README.md"
+            ],
+            "author": {
+                "name": "Administrator",
+                "email": "admin@example.com"
+            },
+            "url": "http://192.168.1.78/wb2/wb20/19059019_wb20/commit/a4b0934719d3366683a0e003b454f62cd52fa8b0",
+            "timestamp": "2019-07-09T11:59:04Z",
+            "modified": [],
+            "message": "Add README.md",
+            "removed": [],
+            "id": "a4b0934719d3366683a0e003b454f62cd52fa8b0"
+        }
+    ],
+    "user_avatar": "https://www.gravatar.com/avatar/e64c7d89f26bd1972efa854d13d7dd61?s=80&d=identicon",
+    "message": null,
+    "before": "0000000000000000000000000000000000000000",
+    "ref": "refs/heads/master",
+    "user_email": "",
+    "checkout_sha": "a4b0934719d3366683a0e003b454f62cd52fa8b0"
+}

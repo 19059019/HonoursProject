@@ -1,0 +1,993 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="description" content="WB272 2019 | Submit"/>
+		<title>WB272 2019 | Submit</title>
+		<link rel="stylesheet" href="../css/wb272.css"/>
+		<link rel="stylesheet" href="../css/fira.css"/>
+		<link rel="stylesheet" href="../css/font-awesome.css"/>
+		<link rel="shortcut icon" type="image/png" href="../img/favicon.png"/>
+	</head>
+	<body>
+
+		<header>
+			<nav class="top-nav">
+				<h1 class="page-title"><i class="fa fa-upload"></i> Submit</h1>
+			</nav>
+			<div class="container">
+				<ul id="nav-mobile" class="side-nav fixed">
+					<li class="logo">
+						<a id="logo-container" class="brand-logo" href="/wb272/">
+							<h1>WB272</h1>
+						</a>
+					</li>
+					<li><a href="../assess/"><i class="fa fa-space fa-line-chart"></i> Assess</a></li>
+					<li><a href="../plan/"><i class="fa fa-space fa-calendar"></i> Plan</a></li>
+					<li><a href="../practise/"><i class="fa fa-space fa-pencil"></i> Practise</a></li>
+					<li><a href="../study/"><i class="fa fa-space fa-book"></i> Study</a></li>
+					<li class="active"><a href="../submit/"><i class="fa fa-space fa-upload"></i> Submit</a></li>
+				</ul>
+				<a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="fa fa-bars"></i></a>
+			</div>
+		</header>
+
+		<main>
+			<div class="container">
+				<div class="row">
+
+					<!-- content -->
+					<div class="col s12 m9 l10">
+
+						<p class="flow-text">
+							Please go directly to your assigned assessment venue.
+						</p>
+						<p class="flow-text science-red-text">
+							<i class="fa fa-warning"></i>
+							If you do not submit from the venue to which you were assigned, you get zero for that assessment.
+						</p>
+
+						<h4>Making bzip2ed archives</h4>
+
+						<p>
+							There are two ways to make the archive files you have to submit.
+						</p>
+						<ol>
+							<li>
+								Open your file manager, and navigate to the folder in which you have put your work.
+								Select the files in the file manager, and right click on the mouse.
+								From the context menu that appears, select the &ldquo;Compress&rdquo; option.
+								In the &ldquo;Compress&rdquo; box that appears, select the &ldquo;.tar.bz2&rdquo; extension, and fill in the filename.
+								What you use as filename does not matter, as long as you can locate the archive file for upload.
+							</li>
+							<li>
+								Assume that you have been working on Assignment X, and that you have placed your work in your <code>~/assignmentx</code> directory.
+								First, change to the directory&mdash;the dollar character is the command prompt, and you do not type it out:
+								<pre class="terminal">
+$ cd ~/assignmentx
+</pre>
+								Next, create an archive of all the Python files in the directory:
+								<pre class="terminal">
+$ tar cvfj assignmentx.tar.bz2 *.py
+</pre>
+								Now, you can upload this tar.bz2 file via the forms provided on this webpage.
+							</li>
+						</ol>
+
+						<h4>Running tests provided for download</h4>
+
+						<p>
+							Assume that you have been working on Assignment X, and that you have placed your work in your <code>~/assignmentx</code> directory.
+						</p>
+						<ol>
+							<li>
+								Download the appropriate test archive from this webpage.
+							</li>
+							<li>
+								By default, your browser will save any downloaded files in your <code>~/Downloads</code> directory.
+								Move the test archive to your assignment directory&mdash;the dollar character is the command prompt, and you do not type it out:
+								<pre class="terminal">
+$ mv ~/Downloads/test-files.tar.bz2 ~/assignmentx
+</pre>
+								Of course, use the name of the downloaded file instead of <code>test-files.tar.bz2</code>.
+							</li>
+							<li>
+								Change to your assignment directory:
+								<pre class="terminal">
+$ cd ~/assignmentx
+</pre>
+							</li>
+							<li>
+								Extract the test files from the archive:
+								<pre class="terminal">
+$ tar xvfj test-files.tar.bz2
+</pre>
+							</li>
+							<li>
+								When the assignment instructions say to test your work with, for example, <code>test_function.py</code>, run this test file:
+								<pre class="terminal">
+$ python3 test_function.py
+</pre>
+							</li>
+						</ol>
+
+							<!-- Assignment 3 -->
+
+							<div id="assignment3" class="section scrollspy">
+
+								<h3>Assignment 3</h3>
+
+								<p class="flow-text">
+										Thursday, 25 April 2019, 11:00 &mdash; 50 minutes
+									<br/>
+										Downloads:
+											<a href="../doc/wb272-assignment3-tests.tar.bz2">Tests archive</a>
+									</p>
+
+										<p>
+											<a class="waves-effect waves-light btn modal-trigger" href="#assignment3venues"><i class="fa fa-group"></i> Assignment 3 Venues</a>
+										</p>
+
+										<!-- submit -->
+										<div class="card-panel gold">
+											<span class="white-text">Please do not double-click the submit button.</span>
+										</div>
+
+										<div class="row">
+											<form id="assignment3form" class="col s12">
+												<input type="hidden" name="identifier" value="assignment3"/>
+												<div class="row">
+													<div class="input-field col s6">
+														<input placeholder="student number" id="assignment3form_student_number" type="text" name="student_number"/>
+													</div>
+													<div class="file-field input-field col s6">
+														<div class="btn waves-effect waves-light">
+															<i class="fa fa-folder-open"></i> &nbsp; Attach file
+															<input type="file" id="assignment3form_file_upload" name="file_upload"/>
+														</div>
+														<div class="file-path-wrapper">
+															<input class="file-path validate" type="text" placeholder="Bzip&rsquo;ed tar to upload"/>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="input-field col s6">
+														<input type="checkbox" id="assignment3form_declaration" class="filled-in" name="declaration" value="yes"/>
+														<label for="assignment3form_declaration">
+															I declare that I have read the SU Policy on Plagiarism, and that I have abided by the rules.
+														</label>
+													</div>
+													<div class="input-field col s6">
+														<button class="btn waves-effect waves-light" type="submit" name="action">
+															<i class="fa fa-send"></i> &nbsp;
+															Submit
+														</button>
+													</div>
+												</div>
+												<div id="assignment3form_upload_progress" class="hide">
+													<div class="progress hidden">
+														<div class="indeterminate"></div>
+													</div>
+												</div>
+												<div id="assignment3form_feedback" class="card-panel grey lighten-3">
+													<span class="science-red-text">Please remember: You are not allowed any resubmissions.</span>
+												</div>
+											</form>
+										</div>
+										<!-- // submit -->
+
+								</div>
+
+								<!-- // Assignment 3 -->
+							<!-- Assignment 4 -->
+
+							<div id="assignment4" class="section scrollspy">
+
+								<h3>Assignment 4</h3>
+
+								<p class="flow-text">
+										Thursday, 16 May 2019, 11:00 &mdash; 50 minutes
+									<br/>
+										Downloads:
+											<a href="../doc/wb272-assignment4-tests.tar.bz2">Tests archive</a>
+									</p>
+
+										<p>
+											<a class="waves-effect waves-light btn modal-trigger" href="#assignment4venues"><i class="fa fa-group"></i> Assignment 4 Venues</a>
+										</p>
+
+										<!-- submit -->
+										<div class="card-panel gold">
+											<span class="white-text">Please do not double-click the submit button.</span>
+										</div>
+
+										<div class="row">
+											<form id="assignment4form" class="col s12">
+												<input type="hidden" name="identifier" value="assignment4"/>
+												<div class="row">
+													<div class="input-field col s6">
+														<input placeholder="student number" id="assignment4form_student_number" type="text" name="student_number"/>
+													</div>
+													<div class="file-field input-field col s6">
+														<div class="btn waves-effect waves-light">
+															<i class="fa fa-folder-open"></i> &nbsp; Attach file
+															<input type="file" id="assignment4form_file_upload" name="file_upload"/>
+														</div>
+														<div class="file-path-wrapper">
+															<input class="file-path validate" type="text" placeholder="Bzip&rsquo;ed tar to upload"/>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="input-field col s6">
+														<input type="checkbox" id="assignment4form_declaration" class="filled-in" name="declaration" value="yes"/>
+														<label for="assignment4form_declaration">
+															I declare that I have read the SU Policy on Plagiarism, and that I have abided by the rules.
+														</label>
+													</div>
+													<div class="input-field col s6">
+														<button class="btn waves-effect waves-light" type="submit" name="action">
+															<i class="fa fa-send"></i> &nbsp;
+															Submit
+														</button>
+													</div>
+												</div>
+												<div id="assignment4form_upload_progress" class="hide">
+													<div class="progress hidden">
+														<div class="indeterminate"></div>
+													</div>
+												</div>
+												<div id="assignment4form_feedback" class="card-panel grey lighten-3">
+													<span class="science-red-text">Please remember: You are not allowed any resubmissions.</span>
+												</div>
+											</form>
+										</div>
+										<!-- // submit -->
+
+								</div>
+
+								<!-- // Assignment 4 -->
+							<!-- Semester Test 2 -->
+
+							<div id="test2" class="section scrollspy">
+
+								<h3>Semester Test 2</h3>
+
+								<p class="flow-text">
+										Tuesday, 28 May 2019, 09:00 &mdash; 3 hours
+									<br/>
+										Downloads:
+											<a href="../doc/wb272-test2-tests.tar.bz2">Tests archive</a>
+										<br/>
+										<span class="blue-text"><i class="fa fa-info-circle"></i> No venue assignments yet
+									</p>
+
+
+										<!-- submit -->
+										<div class="card-panel gold">
+											<span class="white-text">Please do not double-click the submit button.</span>
+										</div>
+
+										<div class="row">
+											<form id="test2form" class="col s12">
+												<input type="hidden" name="identifier" value="test2"/>
+												<div class="row">
+													<div class="input-field col s6">
+														<input placeholder="student number" id="test2form_student_number" type="text" name="student_number"/>
+													</div>
+													<div class="file-field input-field col s6">
+														<div class="btn waves-effect waves-light">
+															<i class="fa fa-folder-open"></i> &nbsp; Attach file
+															<input type="file" id="test2form_file_upload" name="file_upload"/>
+														</div>
+														<div class="file-path-wrapper">
+															<input class="file-path validate" type="text" placeholder="Bzip&rsquo;ed tar to upload"/>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="input-field col s6">
+														<input type="checkbox" id="test2form_declaration" class="filled-in" name="declaration" value="yes"/>
+														<label for="test2form_declaration">
+															I declare that I have read the SU Policy on Plagiarism, and that I have abided by the rules.
+														</label>
+													</div>
+													<div class="input-field col s6">
+														<button class="btn waves-effect waves-light" type="submit" name="action">
+															<i class="fa fa-send"></i> &nbsp;
+															Submit
+														</button>
+													</div>
+												</div>
+												<div id="test2form_upload_progress" class="hide">
+													<div class="progress hidden">
+														<div class="indeterminate"></div>
+													</div>
+												</div>
+												<div id="test2form_feedback" class="card-panel grey lighten-3">
+													<span class="science-red-text">Please remember: You are not allowed any resubmissions.</span>
+												</div>
+											</form>
+										</div>
+										<!-- // submit -->
+
+								</div>
+
+								<!-- // Semester Test 2 -->
+							<!-- Assignment 5 -->
+
+							<div id="assignment5" class="section scrollspy">
+
+								<h3>Assignment 5</h3>
+
+								<p class="flow-text">
+										Thursday, 8 August 2019, 11:00 &mdash; 50 minutes
+									<br/>
+										Downloads:
+											<a href="../doc/wb272-assignment5-tests.tar.bz2">Tests archive</a>
+									</p>
+
+										<p>
+											<a class="waves-effect waves-light btn modal-trigger" href="#assignment5venues"><i class="fa fa-group"></i> Assignment 5 Venues</a>
+										</p>
+
+										<!-- submit -->
+										<div class="card-panel gold">
+											<span class="white-text">Please do not double-click the submit button.</span>
+										</div>
+
+										<div class="row">
+											<form id="assignment5form" class="col s12">
+												<input type="hidden" name="identifier" value="assignment5"/>
+												<div class="row">
+													<div class="input-field col s6">
+														<input placeholder="student number" id="assignment5form_student_number" type="text" name="student_number"/>
+													</div>
+													<div class="file-field input-field col s6">
+														<div class="btn waves-effect waves-light">
+															<i class="fa fa-folder-open"></i> &nbsp; Attach file
+															<input type="file" id="assignment5form_file_upload" name="file_upload"/>
+														</div>
+														<div class="file-path-wrapper">
+															<input class="file-path validate" type="text" placeholder="Bzip&rsquo;ed tar to upload"/>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="input-field col s6">
+														<input type="checkbox" id="assignment5form_declaration" class="filled-in" name="declaration" value="yes"/>
+														<label for="assignment5form_declaration">
+															I declare that I have read the SU Policy on Plagiarism, and that I have abided by the rules.
+														</label>
+													</div>
+													<div class="input-field col s6">
+														<button class="btn waves-effect waves-light" type="submit" name="action">
+															<i class="fa fa-send"></i> &nbsp;
+															Submit
+														</button>
+													</div>
+												</div>
+												<div id="assignment5form_upload_progress" class="hide">
+													<div class="progress hidden">
+														<div class="indeterminate"></div>
+													</div>
+												</div>
+												<div id="assignment5form_feedback" class="card-panel grey lighten-3">
+													<span class="science-red-text">Please remember: You are not allowed any resubmissions.</span>
+												</div>
+											</form>
+										</div>
+										<!-- // submit -->
+
+								</div>
+
+								<!-- // Assignment 5 -->
+							<!-- Assignment 6 -->
+
+							<div id="assignment6" class="section scrollspy">
+
+								<h3>Assignment 6</h3>
+
+								<p class="flow-text">
+										Thursday, 29 August 2019, 11:00 &mdash; 50 minutes
+									<br/>
+										Downloads:
+											<a href="../doc/wb272-assignment6-tests.tar.bz2">Tests archive</a>
+									</p>
+
+										<p>
+											<a class="waves-effect waves-light btn modal-trigger" href="#assignment6venues"><i class="fa fa-group"></i> Assignment 6 Venues</a>
+										</p>
+
+										<!-- submit -->
+										<div class="card-panel gold">
+											<span class="white-text">Please do not double-click the submit button.</span>
+										</div>
+
+										<div class="row">
+											<form id="assignment6form" class="col s12">
+												<input type="hidden" name="identifier" value="assignment6"/>
+												<div class="row">
+													<div class="input-field col s6">
+														<input placeholder="student number" id="assignment6form_student_number" type="text" name="student_number"/>
+													</div>
+													<div class="file-field input-field col s6">
+														<div class="btn waves-effect waves-light">
+															<i class="fa fa-folder-open"></i> &nbsp; Attach file
+															<input type="file" id="assignment6form_file_upload" name="file_upload"/>
+														</div>
+														<div class="file-path-wrapper">
+															<input class="file-path validate" type="text" placeholder="Bzip&rsquo;ed tar to upload"/>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="input-field col s6">
+														<input type="checkbox" id="assignment6form_declaration" class="filled-in" name="declaration" value="yes"/>
+														<label for="assignment6form_declaration">
+															I declare that I have read the SU Policy on Plagiarism, and that I have abided by the rules.
+														</label>
+													</div>
+													<div class="input-field col s6">
+														<button class="btn waves-effect waves-light" type="submit" name="action">
+															<i class="fa fa-send"></i> &nbsp;
+															Submit
+														</button>
+													</div>
+												</div>
+												<div id="assignment6form_upload_progress" class="hide">
+													<div class="progress hidden">
+														<div class="indeterminate"></div>
+													</div>
+												</div>
+												<div id="assignment6form_feedback" class="card-panel grey lighten-3">
+													<span class="science-red-text">Please remember: You are not allowed any resubmissions.</span>
+												</div>
+											</form>
+										</div>
+										<!-- // submit -->
+
+								</div>
+
+								<!-- // Assignment 6 -->
+							<!-- Semester Test 3 -->
+
+							<div id="test3" class="section scrollspy">
+
+								<h3>Semester Test 3</h3>
+
+								<p class="flow-text">
+										Monday, 16 September 2019, 17:30 &mdash; 3 hours
+									<br/>
+										Downloads:
+											<a href="../doc/wb272-test3-tests.tar.bz2">Tests archive</a>
+										<br/>
+										<span class="blue-text"><i class="fa fa-info-circle"></i> No venue assignments yet
+									</p>
+
+
+										<!-- submit -->
+										<div class="card-panel gold">
+											<span class="white-text">Please do not double-click the submit button.</span>
+										</div>
+
+										<div class="row">
+											<form id="test3form" class="col s12">
+												<input type="hidden" name="identifier" value="test3"/>
+												<div class="row">
+													<div class="input-field col s6">
+														<input placeholder="student number" id="test3form_student_number" type="text" name="student_number"/>
+													</div>
+													<div class="file-field input-field col s6">
+														<div class="btn waves-effect waves-light">
+															<i class="fa fa-folder-open"></i> &nbsp; Attach file
+															<input type="file" id="test3form_file_upload" name="file_upload"/>
+														</div>
+														<div class="file-path-wrapper">
+															<input class="file-path validate" type="text" placeholder="Bzip&rsquo;ed tar to upload"/>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="input-field col s6">
+														<input type="checkbox" id="test3form_declaration" class="filled-in" name="declaration" value="yes"/>
+														<label for="test3form_declaration">
+															I declare that I have read the SU Policy on Plagiarism, and that I have abided by the rules.
+														</label>
+													</div>
+													<div class="input-field col s6">
+														<button class="btn waves-effect waves-light" type="submit" name="action">
+															<i class="fa fa-send"></i> &nbsp;
+															Submit
+														</button>
+													</div>
+												</div>
+												<div id="test3form_upload_progress" class="hide">
+													<div class="progress hidden">
+														<div class="indeterminate"></div>
+													</div>
+												</div>
+												<div id="test3form_feedback" class="card-panel grey lighten-3">
+													<span class="science-red-text">Please remember: You are not allowed any resubmissions.</span>
+												</div>
+											</form>
+										</div>
+										<!-- // submit -->
+
+								</div>
+
+								<!-- // Semester Test 3 -->
+							<!-- Assignment 7 -->
+
+							<div id="assignment7" class="section scrollspy">
+
+								<h3>Assignment 7</h3>
+
+								<p class="flow-text">
+										Thursday, 26 September 2019, 11:00 &mdash; 50 minutes
+									<br/>
+										<span class="blue-text"><i class="fa fa-info-circle"></i> No downloads</span>
+									</p>
+
+										<p>
+											<a class="waves-effect waves-light btn modal-trigger" href="#assignment7venues"><i class="fa fa-group"></i> Assignment 7 Venues</a>
+										</p>
+
+										<!-- submit -->
+										<div class="card-panel gold">
+											<span class="white-text">Please do not double-click the submit button.</span>
+										</div>
+
+										<div class="row">
+											<form id="assignment7form" class="col s12">
+												<input type="hidden" name="identifier" value="assignment7"/>
+												<div class="row">
+													<div class="input-field col s6">
+														<input placeholder="student number" id="assignment7form_student_number" type="text" name="student_number"/>
+													</div>
+													<div class="file-field input-field col s6">
+														<div class="btn waves-effect waves-light">
+															<i class="fa fa-folder-open"></i> &nbsp; Attach file
+															<input type="file" id="assignment7form_file_upload" name="file_upload"/>
+														</div>
+														<div class="file-path-wrapper">
+															<input class="file-path validate" type="text" placeholder="Bzip&rsquo;ed tar to upload"/>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="input-field col s6">
+														<input type="checkbox" id="assignment7form_declaration" class="filled-in" name="declaration" value="yes"/>
+														<label for="assignment7form_declaration">
+															I declare that I have read the SU Policy on Plagiarism, and that I have abided by the rules.
+														</label>
+													</div>
+													<div class="input-field col s6">
+														<button class="btn waves-effect waves-light" type="submit" name="action">
+															<i class="fa fa-send"></i> &nbsp;
+															Submit
+														</button>
+													</div>
+												</div>
+												<div id="assignment7form_upload_progress" class="hide">
+													<div class="progress hidden">
+														<div class="indeterminate"></div>
+													</div>
+												</div>
+												<div id="assignment7form_feedback" class="card-panel grey lighten-3">
+													<span class="science-red-text">Please remember: You are not allowed any resubmissions.</span>
+												</div>
+											</form>
+										</div>
+										<!-- // submit -->
+
+								</div>
+
+								<!-- // Assignment 7 -->
+							<!-- Assignment 8 -->
+
+							<div id="assignment8" class="section scrollspy">
+
+								<h3>Assignment 8</h3>
+
+								<p class="flow-text">
+										Thursday, 17 October 2019, 11:00 &mdash; 50 minutes
+									<br/>
+										Downloads:
+											<a href="../doc/wb272-assignment8-data.tar.bz2">Test data</a>
+									</p>
+
+										<p>
+											<a class="waves-effect waves-light btn modal-trigger" href="#assignment8venues"><i class="fa fa-group"></i> Assignment 8 Venues</a>
+										</p>
+
+										<!-- submit -->
+										<div class="card-panel gold">
+											<span class="white-text">Please do not double-click the submit button.</span>
+										</div>
+
+										<div class="row">
+											<form id="assignment8form" class="col s12">
+												<input type="hidden" name="identifier" value="assignment8"/>
+												<div class="row">
+													<div class="input-field col s6">
+														<input placeholder="student number" id="assignment8form_student_number" type="text" name="student_number"/>
+													</div>
+													<div class="file-field input-field col s6">
+														<div class="btn waves-effect waves-light">
+															<i class="fa fa-folder-open"></i> &nbsp; Attach file
+															<input type="file" id="assignment8form_file_upload" name="file_upload"/>
+														</div>
+														<div class="file-path-wrapper">
+															<input class="file-path validate" type="text" placeholder="Bzip&rsquo;ed tar to upload"/>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="input-field col s6">
+														<input type="checkbox" id="assignment8form_declaration" class="filled-in" name="declaration" value="yes"/>
+														<label for="assignment8form_declaration">
+															I declare that I have read the SU Policy on Plagiarism, and that I have abided by the rules.
+														</label>
+													</div>
+													<div class="input-field col s6">
+														<button class="btn waves-effect waves-light" type="submit" name="action">
+															<i class="fa fa-send"></i> &nbsp;
+															Submit
+														</button>
+													</div>
+												</div>
+												<div id="assignment8form_upload_progress" class="hide">
+													<div class="progress hidden">
+														<div class="indeterminate"></div>
+													</div>
+												</div>
+												<div id="assignment8form_feedback" class="card-panel grey lighten-3">
+													<span class="science-red-text">Please remember: You are not allowed any resubmissions.</span>
+												</div>
+											</form>
+										</div>
+										<!-- // submit -->
+
+								</div>
+
+								<!-- // Assignment 8 -->
+							<!-- Assignment 9 -->
+
+							<div id="assignment9" class="section scrollspy">
+
+								<h3>Assignment 9</h3>
+
+								<p class="flow-text">
+										<strong class="science-red-text">Deadline:</strong> Friday, 25 October 2019, 17:00
+									<br/>
+										Downloads:
+											<a href="../doc/wb272-assignment9.pdf">Specification</a>
+											<a href="../doc/wb272-assignment9-data.tar.bz2">Data</a>
+									</p>
+
+
+										<!-- submit -->
+										<div class="card-panel gold">
+											<span class="white-text">Please do not double-click the submit button.</span>
+										</div>
+
+										<div class="row">
+											<form id="assignment9form" class="col s12">
+												<input type="hidden" name="identifier" value="assignment9"/>
+												<div class="row">
+													<div class="input-field col s6">
+														<input placeholder="student number" id="assignment9form_student_number" type="text" name="student_number"/>
+													</div>
+													<div class="file-field input-field col s6">
+														<div class="btn waves-effect waves-light">
+															<i class="fa fa-folder-open"></i> &nbsp; Attach file
+															<input type="file" id="assignment9form_file_upload" name="file_upload"/>
+														</div>
+														<div class="file-path-wrapper">
+															<input class="file-path validate" type="text" placeholder="Bzip&rsquo;ed tar to upload"/>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="input-field col s6">
+														<input type="checkbox" id="assignment9form_declaration" class="filled-in" name="declaration" value="yes"/>
+														<label for="assignment9form_declaration">
+															I declare that I have read the SU Policy on Plagiarism, and that I have abided by the rules.
+														</label>
+													</div>
+													<div class="input-field col s6">
+														<button class="btn waves-effect waves-light" type="submit" name="action">
+															<i class="fa fa-send"></i> &nbsp;
+															Submit
+														</button>
+													</div>
+												</div>
+												<div id="assignment9form_upload_progress" class="hide">
+													<div class="progress hidden">
+														<div class="indeterminate"></div>
+													</div>
+												</div>
+												<div id="assignment9form_feedback" class="card-panel grey lighten-3">
+													<span class="science-red-text">Please remember: You are not allowed any resubmissions.</span>
+												</div>
+											</form>
+										</div>
+										<!-- // submit -->
+
+								</div>
+
+								<!-- // Assignment 9 -->
+							<!-- Comprehensive Test -->
+
+							<div id="test4" class="section scrollspy">
+
+								<h3>Comprehensive Test</h3>
+
+								<p class="flow-text">
+										Wednesday, 30 October 2019, 09:00 &mdash; 3 hours
+									<br/>
+										Downloads:
+											<a href="../doc/wb272-test4-tests.tar.bz2">Tests archive</a>
+										<br/>
+										<span class="blue-text"><i class="fa fa-info-circle"></i> No venue assignments yet
+									</p>
+
+
+										<!-- submit -->
+										<div class="card-panel gold">
+											<span class="white-text">Please do not double-click the submit button.</span>
+										</div>
+
+										<div class="row">
+											<form id="test4form" class="col s12">
+												<input type="hidden" name="identifier" value="test4"/>
+												<div class="row">
+													<div class="input-field col s6">
+														<input placeholder="student number" id="test4form_student_number" type="text" name="student_number"/>
+													</div>
+													<div class="file-field input-field col s6">
+														<div class="btn waves-effect waves-light">
+															<i class="fa fa-folder-open"></i> &nbsp; Attach file
+															<input type="file" id="test4form_file_upload" name="file_upload"/>
+														</div>
+														<div class="file-path-wrapper">
+															<input class="file-path validate" type="text" placeholder="Bzip&rsquo;ed tar to upload"/>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="input-field col s6">
+														<input type="checkbox" id="test4form_declaration" class="filled-in" name="declaration" value="yes"/>
+														<label for="test4form_declaration">
+															I declare that I have read the SU Policy on Plagiarism, and that I have abided by the rules.
+														</label>
+													</div>
+													<div class="input-field col s6">
+														<button class="btn waves-effect waves-light" type="submit" name="action">
+															<i class="fa fa-send"></i> &nbsp;
+															Submit
+														</button>
+													</div>
+												</div>
+												<div id="test4form_upload_progress" class="hide">
+													<div class="progress hidden">
+														<div class="indeterminate"></div>
+													</div>
+												</div>
+												<div id="test4form_feedback" class="card-panel grey lighten-3">
+													<span class="science-red-text">Please remember: You are not allowed any resubmissions.</span>
+												</div>
+											</form>
+										</div>
+										<!-- // submit -->
+
+								</div>
+
+								<!-- // Comprehensive Test -->
+
+						</div>
+						<!-- // content -->
+
+						<!-- table of contents -->
+						<div class="col hide-on-small-only m3 l2">
+							<div class="toc-wrapper">
+								<ul class="section table-of-contents">
+									<li><a href="#assignment3">Apr, 25 (A3)</a></li>
+									<li><a href="#assignment4">May, 16 (A4)</a></li>
+									<li><a href="#test2">May, 28 (T2)</a></li>
+									<li><a href="#assignment5">Aug, 8 (A5)</a></li>
+									<li><a href="#assignment6">Aug, 29 (A6)</a></li>
+									<li><a href="#test3">Sep, 16 (T3)</a></li>
+									<li><a href="#assignment7">Sep, 26 (A7)</a></li>
+									<li><a href="#assignment8">Oct, 17 (A8)</a></li>
+									<li><a href="#assignment9">Oct, 25 (A9)</a></li>
+									<li><a href="#test4">Oct, 30 (T4)</a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- // table of contents -->
+
+				</div>
+			</div>
+		</main>
+
+				<!-- Assignment 3 venues -->
+				<div id="assignment3venues" class="modal modal-fixed-footer">
+					<div class="modal-content">
+						<h3>Assignment 3 Venues</h3>
+							<h4>NARGA B (84 students)</h4>
+							<p>
+								<tt>
+									17123232&#x2001;17710561&#x2001;18546633&#x2001;19011466&#x2001;19865910&#x2001;19971214&#x2001;20671377&#x2001;20700601&#x2001;20733526&#x2001;20768842&#x2001;20789629&#x2001;20811713&#x2001;20834268&#x2001;20834861&#x2001;20855346&#x2001;20897634&#x2001;20908628&#x2001;20931409&#x2001;20978987&#x2001;20981848&#x2001;21068275&#x2001;21535582&#x2001;21553416&#x2001;21555036&#x2001;21566402&#x2001;21568499&#x2001;21573875&#x2001;21577153&#x2001;21577978&#x2001;21580014&#x2001;21580413&#x2001;21582122&#x2001;21583013&#x2001;21584753&#x2001;21587825&#x2001;21594023&#x2001;21596662&#x2001;21600716&#x2001;21608792&#x2001;21611602&#x2001;21626227&#x2001;21627436&#x2001;21631387&#x2001;21639361&#x2001;21640718&#x2001;21645302&#x2001;21650179&#x2001;21651388&#x2001;21652198&#x2001;21664072&#x2001;21669929&#x2001;21687943&#x2001;21688907&#x2001;21695695&#x2001;21704872&#x2001;21718164&#x2001;21726248&#x2001;21740704&#x2001;21773513&#x2001;21785082&#x2001;21793247&#x2001;21794642&#x2001;21802580&#x2001;21811431&#x2001;21813310&#x2001;21831599&#x2001;21843414&#x2001;21882266&#x2001;21884528&#x2001;21898065&#x2001;21905053&#x2001;21911983&#x2001;21970823&#x2001;21999007&#x2001;21999120&#x2001;22044191&#x2001;22049088&#x2001;22121838&#x2001;22142142&#x2001;22183779&#x2001;22188428&#x2001;22213643&#x2001;22217800&#x2001;22932364
+								</tt>
+							</p>
+							<h4>NARGA D (110 students)</h4>
+							<p>
+								<tt>
+									16853237&#x2001;18176895&#x2001;18978371&#x2001;19084773&#x2001;19142838&#x2001;19324049&#x2001;19630824&#x2001;19772815&#x2001;19827784&#x2001;19870329&#x2001;19877099&#x2001;19894651&#x2001;19940882&#x2001;20150350&#x2001;20259735&#x2001;20451474&#x2001;20671954&#x2001;20688105&#x2001;20698380&#x2001;20698712&#x2001;20741634&#x2001;20762747&#x2001;20768591&#x2001;20822340&#x2001;20832559&#x2001;20856288&#x2001;20869118&#x2001;20941390&#x2001;20980965&#x2001;20994338&#x2001;21018030&#x2001;21040958&#x2001;21077320&#x2001;21093857&#x2001;21135487&#x2001;21143544&#x2001;21152284&#x2001;21156387&#x2001;21333645&#x2001;21553491&#x2001;21553815&#x2001;21554315&#x2001;21555745&#x2001;21563535&#x2001;21564086&#x2001;21570515&#x2001;21575223&#x2001;21576262&#x2001;21581118&#x2001;21583293&#x2001;21585229&#x2001;21593426&#x2001;21593493&#x2001;21594201&#x2001;21598835&#x2001;21612838&#x2001;21624836&#x2001;21625689&#x2001;21629986&#x2001;21639531&#x2001;21640556&#x2001;21645493&#x2001;21648433&#x2001;21648557&#x2001;21659001&#x2001;21667756&#x2001;21667802&#x2001;21675112&#x2001;21683115&#x2001;21683336&#x2001;21689326&#x2001;21694915&#x2001;21696861&#x2001;21699232&#x2001;21723664&#x2001;21729484&#x2001;21734097&#x2001;21744394&#x2001;21746877&#x2001;21748209&#x2001;21763712&#x2001;21780838&#x2001;21782245&#x2001;21783101&#x2001;21785368&#x2001;21794634&#x2001;21800421&#x2001;21803285&#x2001;21810354&#x2001;21817014&#x2001;21828814&#x2001;21850437&#x2001;21852669&#x2001;21858004&#x2001;21865663&#x2001;21865728&#x2001;21873267&#x2001;21905940&#x2001;21951381&#x2001;21968349&#x2001;21970610&#x2001;22004750&#x2001;22049061&#x2001;22071520&#x2001;22098038&#x2001;22141634&#x2001;22144528&#x2001;22163409&#x2001;22174273&#x2001;22216723
+								</tt>
+							</p>
+					</div>
+					<div class="modal-footer">
+						<a href="#assignment3" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+					</div>
+				</div>
+				<!-- // Assignment 3 venues -->
+
+
+				<!-- Assignment 4 venues -->
+				<div id="assignment4venues" class="modal modal-fixed-footer">
+					<div class="modal-content">
+						<h3>Assignment 4 Venues</h3>
+							<h4>NARGA B (84 students)</h4>
+							<p>
+								<tt>
+									16853237&#x2001;19011466&#x2001;19084773&#x2001;19142838&#x2001;19630824&#x2001;19827784&#x2001;19865910&#x2001;19870329&#x2001;19877099&#x2001;19940882&#x2001;19971214&#x2001;20150350&#x2001;20451474&#x2001;20688105&#x2001;20698380&#x2001;20700601&#x2001;20741634&#x2001;20832559&#x2001;20834861&#x2001;20897634&#x2001;20980965&#x2001;21018030&#x2001;21143544&#x2001;21156387&#x2001;21333645&#x2001;21554315&#x2001;21555745&#x2001;21564086&#x2001;21566402&#x2001;21570515&#x2001;21577978&#x2001;21580413&#x2001;21581118&#x2001;21582122&#x2001;21584753&#x2001;21587825&#x2001;21593426&#x2001;21594201&#x2001;21596662&#x2001;21598835&#x2001;21600716&#x2001;21608792&#x2001;21611602&#x2001;21624836&#x2001;21626227&#x2001;21629986&#x2001;21640718&#x2001;21645302&#x2001;21650179&#x2001;21664072&#x2001;21667756&#x2001;21675112&#x2001;21683115&#x2001;21687943&#x2001;21688907&#x2001;21689326&#x2001;21696861&#x2001;21718164&#x2001;21726248&#x2001;21740704&#x2001;21744394&#x2001;21763712&#x2001;21773513&#x2001;21780838&#x2001;21785368&#x2001;21803285&#x2001;21810354&#x2001;21811431&#x2001;21843414&#x2001;21865728&#x2001;21873267&#x2001;21951381&#x2001;21970610&#x2001;21970823&#x2001;22004750&#x2001;22044191&#x2001;22049061&#x2001;22098038&#x2001;22121838&#x2001;22141634&#x2001;22142142&#x2001;22163409&#x2001;22174273&#x2001;22188428
+								</tt>
+							</p>
+							<h4>NARGA D (110 students)</h4>
+							<p>
+								<tt>
+									17123232&#x2001;17710561&#x2001;18176895&#x2001;18546633&#x2001;18978371&#x2001;19324049&#x2001;19772815&#x2001;19894651&#x2001;20259735&#x2001;20671377&#x2001;20671954&#x2001;20698712&#x2001;20733526&#x2001;20762747&#x2001;20768591&#x2001;20768842&#x2001;20789629&#x2001;20811713&#x2001;20822340&#x2001;20834268&#x2001;20855346&#x2001;20856288&#x2001;20869118&#x2001;20908628&#x2001;20931409&#x2001;20941390&#x2001;20978987&#x2001;20981848&#x2001;20994338&#x2001;21040958&#x2001;21068275&#x2001;21077320&#x2001;21093857&#x2001;21135487&#x2001;21152284&#x2001;21535582&#x2001;21553416&#x2001;21553491&#x2001;21553815&#x2001;21555036&#x2001;21563535&#x2001;21568499&#x2001;21573875&#x2001;21575223&#x2001;21576262&#x2001;21577153&#x2001;21580014&#x2001;21583013&#x2001;21583293&#x2001;21585229&#x2001;21593493&#x2001;21594023&#x2001;21612838&#x2001;21625689&#x2001;21627436&#x2001;21631387&#x2001;21639361&#x2001;21639531&#x2001;21640556&#x2001;21645493&#x2001;21648433&#x2001;21648557&#x2001;21651388&#x2001;21652198&#x2001;21659001&#x2001;21667802&#x2001;21669929&#x2001;21683336&#x2001;21694915&#x2001;21695695&#x2001;21699232&#x2001;21704872&#x2001;21723664&#x2001;21729484&#x2001;21734097&#x2001;21746877&#x2001;21748209&#x2001;21782245&#x2001;21783101&#x2001;21785082&#x2001;21793247&#x2001;21794634&#x2001;21794642&#x2001;21800421&#x2001;21802580&#x2001;21813310&#x2001;21817014&#x2001;21828814&#x2001;21831599&#x2001;21850437&#x2001;21852669&#x2001;21858004&#x2001;21865663&#x2001;21882266&#x2001;21884528&#x2001;21898065&#x2001;21905053&#x2001;21905940&#x2001;21911983&#x2001;21968349&#x2001;21999007&#x2001;21999120&#x2001;22049088&#x2001;22071520&#x2001;22144528&#x2001;22183779&#x2001;22213643&#x2001;22216723&#x2001;22217800&#x2001;22932364
+								</tt>
+							</p>
+					</div>
+					<div class="modal-footer">
+						<a href="#assignment4" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+					</div>
+				</div>
+				<!-- // Assignment 4 venues -->
+
+
+				<!-- Assignment 5 venues -->
+				<div id="assignment5venues" class="modal modal-fixed-footer">
+					<div class="modal-content">
+						<h3>Assignment 5 Venues</h3>
+							<h4>NARGA B (84 students)</h4>
+							<p>
+								<tt>
+									17123232&#x2001;17710561&#x2001;18176895&#x2001;18978371&#x2001;19324049&#x2001;19772815&#x2001;19865910&#x2001;19870329&#x2001;19894651&#x2001;19971214&#x2001;20150350&#x2001;20671377&#x2001;20688105&#x2001;20698380&#x2001;20698712&#x2001;20741634&#x2001;20789629&#x2001;20822340&#x2001;20834268&#x2001;20834861&#x2001;20931409&#x2001;20941390&#x2001;20994338&#x2001;21040958&#x2001;21093857&#x2001;21135487&#x2001;21143544&#x2001;21152284&#x2001;21333645&#x2001;21555036&#x2001;21555745&#x2001;21568499&#x2001;21570515&#x2001;21575223&#x2001;21577153&#x2001;21577978&#x2001;21580413&#x2001;21581118&#x2001;21583013&#x2001;21583293&#x2001;21584753&#x2001;21594023&#x2001;21596662&#x2001;21612838&#x2001;21631387&#x2001;21640556&#x2001;21645302&#x2001;21645493&#x2001;21650179&#x2001;21669929&#x2001;21675112&#x2001;21687943&#x2001;21694915&#x2001;21695695&#x2001;21699232&#x2001;21718164&#x2001;21723664&#x2001;21729484&#x2001;21744394&#x2001;21746877&#x2001;21748209&#x2001;21763712&#x2001;21773513&#x2001;21783101&#x2001;21785368&#x2001;21794634&#x2001;21794642&#x2001;21800421&#x2001;21803285&#x2001;21813310&#x2001;21817014&#x2001;21831599&#x2001;21852669&#x2001;21858004&#x2001;21865728&#x2001;21873267&#x2001;21999007&#x2001;22049088&#x2001;22141634&#x2001;22163409&#x2001;22174273&#x2001;22213643&#x2001;22216723&#x2001;22932364
+								</tt>
+							</p>
+							<h4>NARGA D (110 students)</h4>
+							<p>
+								<tt>
+									16853237&#x2001;18546633&#x2001;19011466&#x2001;19084773&#x2001;19142838&#x2001;19630824&#x2001;19827784&#x2001;19877099&#x2001;19940882&#x2001;20259735&#x2001;20451474&#x2001;20671954&#x2001;20700601&#x2001;20733526&#x2001;20762747&#x2001;20768591&#x2001;20768842&#x2001;20811713&#x2001;20832559&#x2001;20855346&#x2001;20856288&#x2001;20869118&#x2001;20897634&#x2001;20908628&#x2001;20978987&#x2001;20980965&#x2001;20981848&#x2001;21018030&#x2001;21068275&#x2001;21077320&#x2001;21156387&#x2001;21535582&#x2001;21553416&#x2001;21553491&#x2001;21553815&#x2001;21554315&#x2001;21563535&#x2001;21564086&#x2001;21566402&#x2001;21573875&#x2001;21576262&#x2001;21580014&#x2001;21582122&#x2001;21585229&#x2001;21587825&#x2001;21593426&#x2001;21593493&#x2001;21594201&#x2001;21598835&#x2001;21600716&#x2001;21608792&#x2001;21611602&#x2001;21624836&#x2001;21625689&#x2001;21626227&#x2001;21627436&#x2001;21629986&#x2001;21639361&#x2001;21639531&#x2001;21640718&#x2001;21648433&#x2001;21648557&#x2001;21651388&#x2001;21652198&#x2001;21659001&#x2001;21664072&#x2001;21667756&#x2001;21667802&#x2001;21683115&#x2001;21683336&#x2001;21688907&#x2001;21689326&#x2001;21696861&#x2001;21704872&#x2001;21726248&#x2001;21734097&#x2001;21740704&#x2001;21780838&#x2001;21782245&#x2001;21785082&#x2001;21793247&#x2001;21802580&#x2001;21810354&#x2001;21811431&#x2001;21828814&#x2001;21843414&#x2001;21850437&#x2001;21865663&#x2001;21882266&#x2001;21884528&#x2001;21898065&#x2001;21905053&#x2001;21905940&#x2001;21911983&#x2001;21951381&#x2001;21968349&#x2001;21970610&#x2001;21970823&#x2001;21999120&#x2001;22004750&#x2001;22044191&#x2001;22049061&#x2001;22071520&#x2001;22098038&#x2001;22121838&#x2001;22142142&#x2001;22144528&#x2001;22183779&#x2001;22188428&#x2001;22217800
+								</tt>
+							</p>
+					</div>
+					<div class="modal-footer">
+						<a href="#assignment5" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+					</div>
+				</div>
+				<!-- // Assignment 5 venues -->
+
+
+				<!-- Assignment 6 venues -->
+				<div id="assignment6venues" class="modal modal-fixed-footer">
+					<div class="modal-content">
+						<h3>Assignment 6 Venues</h3>
+							<h4>NARGA B (84 students)</h4>
+							<p>
+								<tt>
+									16853237&#x2001;17123232&#x2001;18546633&#x2001;18978371&#x2001;19011466&#x2001;19084773&#x2001;19324049&#x2001;19772815&#x2001;19827784&#x2001;19865910&#x2001;19940882&#x2001;19971214&#x2001;20741634&#x2001;20768842&#x2001;20789629&#x2001;20834861&#x2001;20869118&#x2001;20897634&#x2001;20931409&#x2001;20941390&#x2001;20978987&#x2001;20980965&#x2001;20994338&#x2001;21040958&#x2001;21093857&#x2001;21156387&#x2001;21333645&#x2001;21535582&#x2001;21553491&#x2001;21554315&#x2001;21555036&#x2001;21564086&#x2001;21577153&#x2001;21577978&#x2001;21580014&#x2001;21582122&#x2001;21584753&#x2001;21594023&#x2001;21596662&#x2001;21598835&#x2001;21612838&#x2001;21624836&#x2001;21639531&#x2001;21640718&#x2001;21645302&#x2001;21648433&#x2001;21648557&#x2001;21664072&#x2001;21667756&#x2001;21667802&#x2001;21675112&#x2001;21683336&#x2001;21688907&#x2001;21695695&#x2001;21696861&#x2001;21699232&#x2001;21726248&#x2001;21763712&#x2001;21773513&#x2001;21780838&#x2001;21783101&#x2001;21785082&#x2001;21800421&#x2001;21802580&#x2001;21803285&#x2001;21810354&#x2001;21811431&#x2001;21817014&#x2001;21828814&#x2001;21843414&#x2001;21852669&#x2001;21858004&#x2001;21865663&#x2001;21882266&#x2001;21884528&#x2001;21898065&#x2001;21999120&#x2001;22049088&#x2001;22121838&#x2001;22144528&#x2001;22163409&#x2001;22174273&#x2001;22188428&#x2001;22213643
+								</tt>
+							</p>
+							<h4>NARGA D (110 students)</h4>
+							<p>
+								<tt>
+									17710561&#x2001;18176895&#x2001;19142838&#x2001;19630824&#x2001;19870329&#x2001;19877099&#x2001;19894651&#x2001;20150350&#x2001;20259735&#x2001;20451474&#x2001;20671377&#x2001;20671954&#x2001;20688105&#x2001;20698380&#x2001;20698712&#x2001;20700601&#x2001;20733526&#x2001;20762747&#x2001;20768591&#x2001;20811713&#x2001;20822340&#x2001;20832559&#x2001;20834268&#x2001;20855346&#x2001;20856288&#x2001;20908628&#x2001;20981848&#x2001;21018030&#x2001;21068275&#x2001;21077320&#x2001;21135487&#x2001;21143544&#x2001;21152284&#x2001;21553416&#x2001;21553815&#x2001;21555745&#x2001;21563535&#x2001;21566402&#x2001;21568499&#x2001;21570515&#x2001;21573875&#x2001;21575223&#x2001;21576262&#x2001;21580413&#x2001;21581118&#x2001;21583013&#x2001;21583293&#x2001;21585229&#x2001;21587825&#x2001;21593426&#x2001;21593493&#x2001;21594201&#x2001;21600716&#x2001;21608792&#x2001;21611602&#x2001;21625689&#x2001;21626227&#x2001;21627436&#x2001;21629986&#x2001;21631387&#x2001;21639361&#x2001;21640556&#x2001;21645493&#x2001;21650179&#x2001;21651388&#x2001;21652198&#x2001;21659001&#x2001;21669929&#x2001;21683115&#x2001;21687943&#x2001;21689326&#x2001;21694915&#x2001;21704872&#x2001;21718164&#x2001;21723664&#x2001;21729484&#x2001;21734097&#x2001;21740704&#x2001;21744394&#x2001;21746877&#x2001;21748209&#x2001;21782245&#x2001;21785368&#x2001;21793247&#x2001;21794634&#x2001;21794642&#x2001;21813310&#x2001;21831599&#x2001;21850437&#x2001;21865728&#x2001;21873267&#x2001;21905053&#x2001;21905940&#x2001;21911983&#x2001;21951381&#x2001;21968349&#x2001;21970610&#x2001;21970823&#x2001;21999007&#x2001;22004750&#x2001;22044191&#x2001;22049061&#x2001;22071520&#x2001;22098038&#x2001;22141634&#x2001;22142142&#x2001;22183779&#x2001;22216723&#x2001;22217800&#x2001;22932364
+								</tt>
+							</p>
+					</div>
+					<div class="modal-footer">
+						<a href="#assignment6" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+					</div>
+				</div>
+				<!-- // Assignment 6 venues -->
+
+
+				<!-- Assignment 7 venues -->
+				<div id="assignment7venues" class="modal modal-fixed-footer">
+					<div class="modal-content">
+						<h3>Assignment 7 Venues</h3>
+							<h4>NARGA B (84 students)</h4>
+							<p>
+								<tt>
+									18978371&#x2001;19011466&#x2001;19324049&#x2001;19772815&#x2001;19827784&#x2001;19865910&#x2001;19870329&#x2001;19940882&#x2001;19971214&#x2001;20259735&#x2001;20451474&#x2001;20671954&#x2001;20733526&#x2001;20741634&#x2001;20762747&#x2001;20789629&#x2001;20822340&#x2001;20832559&#x2001;20834268&#x2001;20834861&#x2001;20856288&#x2001;20869118&#x2001;20931409&#x2001;20994338&#x2001;21018030&#x2001;21040958&#x2001;21135487&#x2001;21156387&#x2001;21553416&#x2001;21553815&#x2001;21554315&#x2001;21568499&#x2001;21570515&#x2001;21573875&#x2001;21575223&#x2001;21580413&#x2001;21584753&#x2001;21587825&#x2001;21594023&#x2001;21596662&#x2001;21608792&#x2001;21611602&#x2001;21624836&#x2001;21625689&#x2001;21639361&#x2001;21645493&#x2001;21648557&#x2001;21650179&#x2001;21651388&#x2001;21667756&#x2001;21669929&#x2001;21683115&#x2001;21683336&#x2001;21694915&#x2001;21699232&#x2001;21723664&#x2001;21726248&#x2001;21729484&#x2001;21744394&#x2001;21748209&#x2001;21780838&#x2001;21782245&#x2001;21785082&#x2001;21794642&#x2001;21802580&#x2001;21810354&#x2001;21831599&#x2001;21843414&#x2001;21884528&#x2001;21911983&#x2001;21970610&#x2001;21999120&#x2001;22004750&#x2001;22049061&#x2001;22071520&#x2001;22121838&#x2001;22141634&#x2001;22142142&#x2001;22144528&#x2001;22163409&#x2001;22183779&#x2001;22188428&#x2001;22213643&#x2001;22932364
+								</tt>
+							</p>
+							<h4>NARGA D (110 students)</h4>
+							<p>
+								<tt>
+									16853237&#x2001;17123232&#x2001;17710561&#x2001;18176895&#x2001;18546633&#x2001;19084773&#x2001;19142838&#x2001;19630824&#x2001;19877099&#x2001;19894651&#x2001;20150350&#x2001;20671377&#x2001;20688105&#x2001;20698380&#x2001;20698712&#x2001;20700601&#x2001;20768591&#x2001;20768842&#x2001;20811713&#x2001;20855346&#x2001;20897634&#x2001;20908628&#x2001;20941390&#x2001;20978987&#x2001;20980965&#x2001;20981848&#x2001;21068275&#x2001;21077320&#x2001;21093857&#x2001;21143544&#x2001;21152284&#x2001;21333645&#x2001;21535582&#x2001;21553491&#x2001;21555036&#x2001;21555745&#x2001;21563535&#x2001;21564086&#x2001;21566402&#x2001;21576262&#x2001;21577153&#x2001;21577978&#x2001;21580014&#x2001;21581118&#x2001;21582122&#x2001;21583013&#x2001;21583293&#x2001;21585229&#x2001;21593426&#x2001;21593493&#x2001;21594201&#x2001;21598835&#x2001;21600716&#x2001;21612838&#x2001;21626227&#x2001;21627436&#x2001;21629986&#x2001;21631387&#x2001;21639531&#x2001;21640556&#x2001;21640718&#x2001;21645302&#x2001;21648433&#x2001;21652198&#x2001;21659001&#x2001;21664072&#x2001;21667802&#x2001;21675112&#x2001;21687943&#x2001;21688907&#x2001;21689326&#x2001;21695695&#x2001;21696861&#x2001;21704872&#x2001;21718164&#x2001;21734097&#x2001;21740704&#x2001;21746877&#x2001;21763712&#x2001;21773513&#x2001;21783101&#x2001;21785368&#x2001;21793247&#x2001;21794634&#x2001;21800421&#x2001;21803285&#x2001;21811431&#x2001;21813310&#x2001;21817014&#x2001;21828814&#x2001;21850437&#x2001;21852669&#x2001;21858004&#x2001;21865663&#x2001;21865728&#x2001;21873267&#x2001;21882266&#x2001;21898065&#x2001;21905053&#x2001;21905940&#x2001;21951381&#x2001;21968349&#x2001;21970823&#x2001;21999007&#x2001;22044191&#x2001;22049088&#x2001;22098038&#x2001;22174273&#x2001;22216723&#x2001;22217800
+								</tt>
+							</p>
+					</div>
+					<div class="modal-footer">
+						<a href="#assignment7" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+					</div>
+				</div>
+				<!-- // Assignment 7 venues -->
+
+
+				<!-- Assignment 8 venues -->
+				<div id="assignment8venues" class="modal modal-fixed-footer">
+					<div class="modal-content">
+						<h3>Assignment 8 Venues</h3>
+							<h4>NARGA B (84 students)</h4>
+							<p>
+								<tt>
+									18176895&#x2001;18978371&#x2001;19870329&#x2001;19971214&#x2001;20259735&#x2001;20671377&#x2001;20688105&#x2001;20733526&#x2001;20741634&#x2001;20768842&#x2001;20811713&#x2001;20822340&#x2001;20834268&#x2001;20855346&#x2001;20856288&#x2001;20931409&#x2001;20980965&#x2001;20981848&#x2001;20994338&#x2001;21093857&#x2001;21143544&#x2001;21333645&#x2001;21553491&#x2001;21563535&#x2001;21564086&#x2001;21568499&#x2001;21570515&#x2001;21576262&#x2001;21582122&#x2001;21583013&#x2001;21584753&#x2001;21593426&#x2001;21593493&#x2001;21594023&#x2001;21596662&#x2001;21600716&#x2001;21612838&#x2001;21625689&#x2001;21627436&#x2001;21639361&#x2001;21639531&#x2001;21640556&#x2001;21640718&#x2001;21648557&#x2001;21650179&#x2001;21651388&#x2001;21652198&#x2001;21659001&#x2001;21664072&#x2001;21667756&#x2001;21667802&#x2001;21687943&#x2001;21688907&#x2001;21695695&#x2001;21704872&#x2001;21723664&#x2001;21746877&#x2001;21763712&#x2001;21782245&#x2001;21783101&#x2001;21811431&#x2001;21813310&#x2001;21817014&#x2001;21828814&#x2001;21843414&#x2001;21850437&#x2001;21858004&#x2001;21865663&#x2001;21873267&#x2001;21884528&#x2001;21905053&#x2001;21951381&#x2001;21968349&#x2001;21970610&#x2001;21999007&#x2001;22071520&#x2001;22098038&#x2001;22121838&#x2001;22141634&#x2001;22144528&#x2001;22163409&#x2001;22183779&#x2001;22217800&#x2001;22932364
+								</tt>
+							</p>
+							<h4>NARGA D (110 students)</h4>
+							<p>
+								<tt>
+									16853237&#x2001;17123232&#x2001;17710561&#x2001;18546633&#x2001;19011466&#x2001;19084773&#x2001;19142838&#x2001;19324049&#x2001;19630824&#x2001;19772815&#x2001;19827784&#x2001;19865910&#x2001;19877099&#x2001;19894651&#x2001;19940882&#x2001;20150350&#x2001;20451474&#x2001;20671954&#x2001;20698380&#x2001;20698712&#x2001;20700601&#x2001;20762747&#x2001;20768591&#x2001;20789629&#x2001;20832559&#x2001;20834861&#x2001;20869118&#x2001;20897634&#x2001;20908628&#x2001;20941390&#x2001;20978987&#x2001;21018030&#x2001;21040958&#x2001;21068275&#x2001;21077320&#x2001;21135487&#x2001;21152284&#x2001;21156387&#x2001;21535582&#x2001;21553416&#x2001;21553815&#x2001;21554315&#x2001;21555036&#x2001;21555745&#x2001;21566402&#x2001;21573875&#x2001;21575223&#x2001;21577153&#x2001;21577978&#x2001;21580014&#x2001;21580413&#x2001;21581118&#x2001;21583293&#x2001;21585229&#x2001;21587825&#x2001;21594201&#x2001;21598835&#x2001;21608792&#x2001;21611602&#x2001;21624836&#x2001;21626227&#x2001;21629986&#x2001;21631387&#x2001;21645302&#x2001;21645493&#x2001;21648433&#x2001;21669929&#x2001;21675112&#x2001;21683115&#x2001;21683336&#x2001;21689326&#x2001;21694915&#x2001;21696861&#x2001;21699232&#x2001;21718164&#x2001;21726248&#x2001;21729484&#x2001;21734097&#x2001;21740704&#x2001;21744394&#x2001;21748209&#x2001;21773513&#x2001;21780838&#x2001;21785082&#x2001;21785368&#x2001;21793247&#x2001;21794634&#x2001;21794642&#x2001;21800421&#x2001;21802580&#x2001;21803285&#x2001;21810354&#x2001;21831599&#x2001;21852669&#x2001;21865728&#x2001;21882266&#x2001;21898065&#x2001;21905940&#x2001;21911983&#x2001;21970823&#x2001;21999120&#x2001;22004750&#x2001;22044191&#x2001;22049061&#x2001;22049088&#x2001;22142142&#x2001;22174273&#x2001;22188428&#x2001;22213643&#x2001;22216723
+								</tt>
+							</p>
+					</div>
+					<div class="modal-footer">
+						<a href="#assignment8" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+					</div>
+				</div>
+				<!-- // Assignment 8 venues -->
+
+
+		<footer class="page-footer">
+			<div class="container">
+				<div class="row valign-wrapper">
+					<div class="col s3 m2 l1">
+						<img src="../img/USlogo.svg" class="responsive-img"/>
+					</div>
+					<div class="col s9 m10 l11">
+						<p class="white-text">
+							<a href="http://www.cs.sun.ac.za/" class="no-icon">Computer Science</a><br/>
+							<a href="http://math.sun.ac.za/" class="no-icon">Department of Mathematical Sciences</a><br/>
+							<a href="http://science.sun.ac.za/" class="no-icon">Faculty of Science</a><br/>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="footer-copyright container">
+				&copy; 2019 <a href="http://www.sun.ac.za/" class="no-icon">Stellenbosch University</a>
+			</div>
+		</footer>
+
+		<script src="../js/jquery-2.1.4.min.js"></script>
+		<script src="../js/materialize.js"></script>
+		<script src="submit.js"></script>
+		<script type="text/javascript">
+			$( document ).ready(function() {
+				$('.toc-wrapper').pushpin({ top: $('nav').height() });
+				$('.button-collapse').sideNav();
+				$('.scrollspy').scrollSpy();
+				$('.modal-trigger').leanModal();
+			})
+		</script>
+
+	</body>
+</html>

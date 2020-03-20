@@ -1,0 +1,17 @@
+{
+    "git": "false", 
+    "end": "2019-11-01T12:00", 
+    "description": "", 
+    "Title": "Scientific Computing 372: Comprehensive Test", 
+    "file_name": "wb372-test4-data.tar.bz2", 
+    "Ass_Code": "wb3720", 
+    "module": "wb372", 
+    "download_during": "true", 
+    "environment": "false", 
+    "start": "2019-11-01T09:00", 
+    "end_pretty": "Fri 01 Nov 2019 - 12:00", 
+    "file": "true", 
+    "allowed_resubmissions": -1, 
+    "allowed_late": "false", 
+    "start_pretty": "Fri 01 Nov 2019 - 09:00"
+}

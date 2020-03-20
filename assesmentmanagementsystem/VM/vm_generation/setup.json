@@ -1,0 +1,22 @@
+{
+    "Title": "25_04_2019_1",
+    "VMProperties": {
+        "vmpath": "/home/19059019/VirtuaVirtualBox\\ VMs/",
+        "isopath": "/home/19059019/Project/ubuntu-16.04.4-desktop-amd64.iso",
+        "ostype": "Ubuntu_64",
+        "cpus": "6",
+        "memory": "4096",
+        "vram": "12",
+        "sharedfolder": {
+            "include": "false",
+            "path": "/home/19059019/Project/assesmentmanagementsystem/vm"
+        }
+    },
+    "TestProperties": {
+        "timeMinutes": "0"
+    },
+    "Firewall": {
+        "Facebook": "block",
+        "Google": "allow"
+    }
+}

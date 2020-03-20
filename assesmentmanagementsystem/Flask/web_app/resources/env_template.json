@@ -1,0 +1,25 @@
+{
+    "Title": "25_04_2019_1",
+    "VMProperties": {
+        "enable":"false",
+        "ostype": "AMS_Ubuntu16",
+        "cpus": "4",
+        "memory": "2048",
+        "vram": "12",
+        "sharedfolder": {
+            "include": "false",
+            "path": "/home/19059019/Project/assesmentmanagementsystem/vm"
+        }
+    },
+    "TestProperties": {
+        "timeMinutes": "0"
+    },
+    "Firewall": {
+        "enable":"false",
+        "only_block_inetkey":"false",
+        "allow_sunlearn":"false",
+        "whitelist":"false",
+        "whitelist_sites":"false"
+    }
+}
+

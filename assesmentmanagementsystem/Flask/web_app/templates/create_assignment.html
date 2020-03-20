@@ -1,0 +1,277 @@
+{% extends "layout.html" %}
+{% block body %}
+{% for e in error %}
+<script> alert("{{error['e']}}"); </script>
+{% endfor %}
+{% if session.title == "lecturer" or session.title == "admin"%}
+<h1 style="text-align: center">Assignment Creation</h1>
+<!-- Create assignment form -->
+<form method=post enctype=multipart/form-data> <!-- Submission and/or Environment -->
+    <p>
+        <label>
+            <input type="checkbox" id="submission" name="submission" />
+            <span>Submission</span>
+        </label>
+    </p>
+    <p>
+        <label>
+            <input type="checkbox" id="environment" name="environment" />
+            <span>Environment</span>
+        </label>
+    </p>
+    <p>
+        <label>
+            <input type="checkbox" id="git" name="git" />
+            <span>Gitlab Repositories</span>
+        </label>
+    </p>
+    <p>Module: </p>
+    {% for mod in modules %}
+    <label>
+        <input class="with-gap" name="module" type="radio" value="{{mod}}" checked="checked" />
+        <span>{{mod}}</span>
+    </label>
+    {% endfor %}
+    <p>Settings: </p>
+    <div class="input-field">
+        <input type="text" id="title" name="assignment_title"  required>
+        <label style="color: rgb(51,51,51);" for="title">Title for this assignment:</label>
+    </div>
+    <div class="input-field">
+        <textarea id="input_text" name="description" rows="100" maxlength="10000" data-length="10000"
+            style="height:150px;"></textarea>
+        <label style="color: rgb(51,51,51);" for="input_text">Description/Instructions for students:(optional)</label>
+    </div>
+
+    <div class="git">
+        <h3>Git Configuration</h3>
+        <p>CI Language and Version:</p>
+        <div class="input-field col s6" style="max-width: 20%;">
+            <select name="py_version">
+                <option value="python:2.7">Python 2.7</option>
+                <option value="python:3.5">Python 3.5</option>
+            </select>
+        </div>
+        <p>
+            <label>
+                <input type="checkbox" id="stylechecker" name="stylechecker" />
+                <span>CI Stylechecker?</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input type="checkbox" id="ci_test" name="ci_test" />
+                <span>CI Tests?</span>
+            </label>
+        </p>
+        <div class="file-field input-field" name="requirements_file_field">
+            <div class="btn">
+                <span>Requirements.txt</span>
+                <input type="file" name="requirements" accept=".txt">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" name="requirements">
+            </div>
+        </div>
+        <div class="file-field input-field" name="test_file_field">
+            <div class="btn">
+                <span>Python test file</span>
+                <input type="file" name="test_file" accept=".py">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" name="test_file">
+            </div>
+        </div>
+    </div>
+
+    <div class="submission">
+        <h3>Submission Configuration</h3>
+        <!-- Submission settings 
+        o Start date and time[DateTime]
+        o End date and time[DateTime]
+        o Available files[Checkbox]
+        o Available files[File uploader]
+        o Description[Text Box](Optional
+        o TODO:
+        o Allow resubmissions [Checkbox]
+        o Number of resubmissions [number]-->
+        <p>
+            <div style="max-width: 20%;">
+                <label>Start Date and Time: </label><input type="datetime-local" name="start_date" required>
+            </div>
+            <div style="max-width: 20%;">
+                <label>End Date and Time: </label><input type="datetime-local" name="end_date" required>
+        </p>
+    </div>
+    <p>
+        <div style="max-width: 20%;">
+            <label>
+                <input type="checkbox" id="allowed_late" name="allowed_late" />
+                <span>Allow Late Submissions?</span>
+            </label>
+        </div>
+    </p>
+    <p>
+        <div style="max-width: 20%;">
+            <label>
+                <input type="checkbox" id="allow_resubmissions" name="allow_resubmissions" />
+                <span>Allow Resubmissions?</span>
+            </label>
+        </div>
+    </p>
+    <div class="resubmissions">
+        <p>
+            <div style="max-width: 20%;">
+                <label>
+                    <input type="checkbox" id="limit_resubmissions" name="limit_resubmissions" />
+                    <span>Limit Resubmissions?</span>
+                </label>
+            </div>
+        </p>
+        <div class="resub-range">
+            <p class="range-field">
+                <input type="number" id="resubmissions" name="resubmissions" min="1" max="1000" value=1 />
+            </p>
+        </div>
+    </div>
+    <p>
+        <label>
+            <input type="checkbox" name="submission_checkbox" />
+            <span>Make files available?</span>
+        </label>
+    </p>
+    <p>
+        <div style="max-width: 50%;" id="download_during">
+            <label>
+                <input type="checkbox" id="download_during" name="download_during" />
+                <span>Only make files available for the duration of the assignment?</span>
+            </label>
+        </div>
+    </p>
+    <div class="file-field input-field" name="submission_file_field">
+        <p class="thick" id="resubs-allowed" style="font-size: 110%;"><i class="material-icons"
+                style="color: rgb(84,26,40);">new_releases</i> NOTE: <label>Only
+                files with a .tar.bz2 or .zip extension will be accepted.</label>
+        </p>
+        <div class="btn">
+            <span>File</span>
+            <input type="file" name="submission_file" accept=".zip,.tar.bz2">
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" name="file_path">
+        </div>
+    </div>
+    </div>
+
+    <div class="environment">
+        <h3>Environment Configuration</h3>
+        <!-- Environment settings
+         o Internet Restrictions[Checkbox]
+          > Allow inetkey[Checkbox]
+          > Allow univeristy websites
+          > Whitelist sites[Checkbox]
+         o Webistes to block[textbox]
+         o Virtual Machine 
+          > Time limit[int input]
+          > Operating system[Dropdown]
+          > CPUs[dropdown]
+          > Memory[dropdown]
+          > include submission files[Checkbox] -->
+        <p>
+            <label>
+                <input type="checkbox" name="internet_restriction" />
+                <span>Would you like internet restrictions?</span>
+                </br><span>Note that this website will be available to students at all times:</span>
+            </label>
+        </p>
+        <div class="internet_restriction" style="padding-left: 10px">
+            <p>
+                <label>
+                    <input id="indeterminate-checkbox" type="checkbox" name="inetkey" />
+                    <span>Would you like to only block inketey?</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input id="indeterminate-checkbox" type="checkbox" name="sun" />
+                    <span>Would you like to allow Stellenbosch University websites?</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input id="indeterminate-checkbox" type="checkbox" name="whitelist_box" />
+                    <span>Would you like to include your own websites to whitelist?</span>
+                </label>
+            </p>
+            <div class="input-field" id="whitelist_div">
+                <input id="whitelist_input" type="text" name="whitelist_websites" data-length="10">
+                <label for="whitelist_input">Comma separated list of websites to allow:</label>
+            </div>
+        </div>
+
+        <p>
+            <label>
+                <input type="checkbox" name="virtual_machine_checkbox" />
+                <span>Would you like to make use of a virtual environment?</span>
+            </label>
+        </p>
+        <div class="virtual_machine" style="padding-left: 10px">
+            <p>
+                <label>
+                    <input type="checkbox" name="time_limit_checkbox" />
+                    <span>Would you like the virtual machine to have a time limit on it?</span>
+                    <span>Note that the virtual machine will self destruct after this time limit and anything not
+                        submitted will be lost</span>
+                </label>
+            </p>
+            <div class="time_limit_div" style="padding-left: 10px">
+                <label>Time limit in minutes: </label>
+                <input type="number" min="1" max="1440" name="time_limit">
+            </div>
+            <p>Operating System:</p>
+            <label>
+                <input class="with-gap" name="os" type="radio" value="ubuntu" checked="checked" />
+                <span>Ubuntu 16.04</span>
+            </label>
+            <p>Number of CPUs:</p>
+            <div class="input-field col s6" style="max-width: 20%;">
+                <select name=cpus>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+            </div>
+            <p>Memory:</p>
+            <div class="input-field col s6" style="max-width: 20%;">
+                <select name="memory">
+                    <option value="1024">1GB</option>
+                    <option value="2048">2GB</option>
+                    <option value="4096">4GB</option>
+                    <option value="8192">8GB</option>
+                </select>
+            </div>
+            <p>
+                <label>
+                    <input type="checkbox" name="shared_folder_checkbox" />
+                    <span>Include Supplied Submission Files in the Virtual Machine?</span>
+                </label>
+            </p>
+
+        </div>
+    </div>
+    <br>
+    <br>
+    <div style="text-align:center">
+        <input type="submit" class="button" value="Create Assignment">
+    </div>
+</form>
+<script src="../static/create_assignment.js"></script>
+{% else %}
+<h1 style="text-align: center"> Only lecturers may make use of this feature </h1>
+{% endif %}
+{% endblock %}

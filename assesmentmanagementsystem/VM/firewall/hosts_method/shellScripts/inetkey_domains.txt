@@ -1,0 +1,4 @@
+# Blocks normal inetkey connections
+127.0.0.1 inetkey.sun.ac.za
+# Blocks pynetkey
+127.0.0.1 maties2.sun.ac.za

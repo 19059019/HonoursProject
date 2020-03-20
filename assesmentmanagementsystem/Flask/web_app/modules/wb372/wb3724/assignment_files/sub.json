@@ -1,0 +1,17 @@
+{
+    "git": "false", 
+    "end": "2019-11-22T10:15", 
+    "description": "", 
+    "Title": "Demo Submisison assignment", 
+    "file_name": "archive.tar.bz2", 
+    "Ass_Code": "wb3724", 
+    "module": "wb372", 
+    "download_during": "true", 
+    "environment": "false", 
+    "start": "2019-11-22T10:10", 
+    "end_pretty": "Fri 22 Nov 2019 - 10:15", 
+    "file": "true", 
+    "allowed_resubmissions": -1, 
+    "start_pretty": "Fri 22 Nov 2019 - 10:10", 
+    "allowed_late": "true"
+}

@@ -1,0 +1,6 @@
+.button {
+    padding:5px 15px; 
+    border:0 none;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}

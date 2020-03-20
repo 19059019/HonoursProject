@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1 style="text-align: center">Modules for {{ session.user }}:</h1>
+
+<!-- Student home page -->
+<div style="text-align: center;">
+    {% for module in modules %}
+    <div>
+        <div class="col s12 m6">
+            <div class="card" style="background-color: rgba(220,220,220);">
+                <div class="card-content black-text">
+                    <span class="card-title" style="color: rgb(84,26,40); font-size: 120%;">
+                        <p class="thick">{{module}}</p>
+                    </span>
+                    <span style="text-align: left;">
+                        {% for ass in assignments %}
+                        {% if ass['module'] == module %}
+                        <p class="thick">{{ass['Title']}}</p>
+                        <span>
+                            <table style="min-width: 100%; border: 0px;">
+                                {% if session.title == "student" or session.title == "admin" %}
+                                <!-- Student -->
+                                <tr>
+                                    <td>
+                                        View: <a id="file-path" href="/assignment/{{ass['Ass_Code']}}"
+                                            style="font-size: 150%; color: #039be5 !important;"><i
+                                                class="small material-icons">assignment</i></a>
+                                    </td>
+                                    <td>
+                                        Due: {{ass['end_pretty']}}
+                                    </td>
+                                    <td>
+                                        Submitted:
+                                        {% if ass['Ass_Code'] in subs_made %}
+                                        <i class="material-icons" style="color: green !important;">done</i>
+                                        {% else %}
+                                        <i class="material-icons" style="color: red !important;">close</i>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% if session.title == "lecturer" or session.title == "marker" or session.title == "admin" %}
+                                <!-- Markers and lecturers -->
+                                <tr>
+                                    <td>
+                                        View: <a id="file-path" href="/assignment/{{ass['Ass_Code']}}"
+                                            style="font-size: 150%; color: #039be5 !important;"><i
+                                                class="small material-icons">assignment</i></a>
+                                    </td>
+                                    <td>
+                                        Due: {{ass['end_pretty']}}
+                                    </td>
+                                    <td>
+                                        Late Submissions:
+                                        {% if ass['allowed_late'] ==  "true" %}
+                                        <i class="material-icons" style="color: green !important;">done</i>
+                                        {% else %}
+                                        <i class="material-icons" style="color: red !important;">close</i>
+                                        {% endif %}
+                                        {% if session.title == "lecturer" or session.title == "admin"%}
+                                        <a class="button" href="/toggle_late/{{ass['Ass_Code']}}/home">Toggle</a>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        Reports: <a href="/report/{{ass['Ass_Code']}}"><i class="material-icons"
+                                                style="color: #039be5;">table_chart</i></a>
+                                    </td>
+                                    {% if session.title == "lecturer" or session.title == "admin"%}
+
+                                    <td>
+                                        Automated Marking: <a href="/marking"><i class="material-icons"
+                                                style="color: #039be5;">check_circle</i>
+                                    </td>
+                                    {% endif %}
+                                </tr>
+                                {% endif %}
+                            </table>
+                        </span>
+                        {% endif %}
+                        {% endfor %}
+                    </span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

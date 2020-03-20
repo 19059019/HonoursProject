@@ -1,0 +1,15 @@
+image: "python:2.7"
+
+stages:
+  - style
+  - test
+
+style:
+  stage: style
+  script:
+  - pip install pylint
+  - find . -iname "*.py" | xargs pylint
+
+test:
+  stage: test
+  script:

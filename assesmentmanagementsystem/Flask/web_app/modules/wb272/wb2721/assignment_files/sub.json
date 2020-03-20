@@ -1,0 +1,17 @@
+{
+    "git": "false", 
+    "end": "2019-10-30T12:00", 
+    "description": "Scientific Computing 272: Comprehensive Test", 
+    "Title": "Scientific Computing 272: Comprehensive Test", 
+    "file_name": "wb272-test4-tests.tar.bz2", 
+    "Ass_Code": "wb2721", 
+    "module": "wb272", 
+    "download_during": "true", 
+    "environment": "false", 
+    "start": "2019-10-30T09:00", 
+    "end_pretty": "Wed 30 Oct 2019 - 12:00", 
+    "file": "true", 
+    "allowed_resubmissions": "99", 
+    "allowed_late": "false", 
+    "start_pretty": "Wed 30 Oct 2019 - 09:00"
+}

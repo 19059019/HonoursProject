@@ -1,0 +1,148 @@
+#- name: Assignment 0
+#  anchor: assignment0
+#  short: A0
+#  content: Choices in Python
+#  downloads:
+#      - name: Tests archive
+#        filename: wb272-assignment0-tests.tar.bz2
+#  datetime:
+#      start: 2019-02-21 11:00:00
+#      duration: 50
+
+# - name: Assignment 1
+#   anchor: assignment1
+#   short: A1
+#   content: Choices in Python
+#   downloads:
+#       - name: Tests archive
+#         filename: wb272-assignment1-tests.tar.bz2
+#   datetime:
+#       start: 2019-03-08 10:00:00
+#       duration: 50
+
+# - name: Semester Test 1
+#   anchor: test1
+#   short: T1
+#   content: Python §1–6
+#   downloads:
+#       - name: Tests archive
+#         filename: wb272-test1-tests.tar.bz2
+#   datetime:
+#       start: 2019-03-12 17:30:00
+#       duration: 120
+
+# - name: Assignment 2
+#   anchor: assignment2
+#   short: A2
+#   content: Choices in Python
+#   downloads:
+#       - name: Tests archive
+#         filename: wb272-assignment2-tests.tar.bz2
+#   datetime:
+#       start: 2019-04-05 10:00:00
+#       duration: 50
+
+- name: Assignment 3
+  anchor: assignment3
+  short: A3
+  content: Choices in Python
+  downloads:
+      - name: Tests archive
+        filename: wb272-assignment3-tests.tar.bz2
+  datetime:
+      start: 2019-04-25 11:00:00
+      duration: 50
+
+- name: Assignment 4
+  anchor: assignment4
+  short: A4
+  content: Choices in Python
+  downloads:
+      - name: Tests archive
+        filename: wb272-assignment4-tests.tar.bz2
+  datetime:
+      start: 2019-05-16 11:00:00
+      duration: 50
+
+- name: Semester Test 2
+  anchor: test2
+  short: T2
+  content: Python §1–6
+  downloads:
+      - name: Tests archive
+        filename: wb272-test2-tests.tar.bz2
+  datetime:
+      start: 2019-05-28 09:00:00
+      duration: 180
+
+- name: Assignment 5
+  anchor: assignment5
+  short: A5
+  content: Choices in Python
+  downloads:
+      - name: Tests archive
+        filename: wb272-assignment5-tests.tar.bz2
+  datetime:
+      start: 2019-08-08 11:00:00
+      duration: 50
+
+- name: Assignment 6
+  anchor: assignment6
+  short: A6
+  content: Repetition in Python
+  downloads:
+      - name: Tests archive
+        filename: wb272-assignment6-tests.tar.bz2
+  datetime:
+      start: 2019-08-29 11:00:00
+      duration: 50
+
+- name: Semester Test 3
+  anchor: test3
+  short: T3
+  content: Python §1–6
+  downloads:
+      - name: Tests archive
+        filename: wb272-test3-tests.tar.bz2
+  datetime:
+      start: 2019-09-16 17:30:00
+      duration: 180
+
+- name: Assignment 7
+  anchor: assignment7
+  short: A7
+  content: Numerical Python and Linear Algebra
+  datetime:
+      start: 2019-09-26 11:00:00
+      duration: 50
+
+- name: Assignment 8
+  anchor: assignment8
+  short: A8
+  content: Data Plotting and Processing
+  downloads:
+      - name: Test data
+        filename: wb272-assignment8-data.tar.bz2
+  datetime:
+      start: 2019-10-17 11:00:00
+      duration: 50
+
+- name: Assignment 9
+  anchor: assignment9
+  short: A9
+  downloads:
+      - name: Specification
+        filename: wb272-assignment9.pdf
+      - name: Data
+        filename: wb272-assignment9-data.tar.bz2
+  deadline: 2019-10-25 17:00:00
+
+- name: Comprehensive Test
+  anchor: test4
+  short: T4
+  downloads:
+      - name: Tests archive
+        filename: wb272-test4-tests.tar.bz2
+  datetime:
+      start: 2019-10-30 09:00:00
+      duration: 180

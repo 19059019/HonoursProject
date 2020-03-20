@@ -1,0 +1,21 @@
+From:{}
+To: {}
+Subject: {}
+
+Dear Stellenbosch University student,
+
+You are receiving this email, because you have recently made a submission using the
+Maties Assessment Management System. Please will you put aside two minutes of your time
+to give some feedback on this submission system.
+
+The survey responses are anonymous, and at no point is personally identifiable information
+like names, surnames, student numbers, and computer addresses solicited or tracked in any way.
+If you have any questions or concerns about the research, please feel free
+to contact the researcher Michael Shepherd [19059019@sun.ac.za] and/or the
+supervisor, Willem Bester [whkbester@cs.sun.ac.za].
+
+To receive your own copy of the information form, please contact Michael Shepherd
+[19059019@sun.ac.za].
+
+The survey is available at:
+{}

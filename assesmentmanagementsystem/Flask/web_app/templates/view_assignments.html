@@ -1,0 +1,226 @@
+{% extends "layout.html" %}
+{% block body %}
+<!-- Alert if there was an error with the submission -->
+{% for error in error %}
+<div
+    style="background:rgba(255, 0, 0, 0.7); color: white; padding: 20px,20px,20px,20px !important ; text-align: center; border-radius: 5px;">
+    <br>
+    <h3>THERE WAS AN ERROR WITH YOUR SUBMISSION <i class="large material-icons"
+            style="color: white !important;">new_releases</i></h3>
+    <p>
+        <div>
+            Possible reasons for this message include late submissions, incorrect file formats (not .tar.bz2), late
+            submission attempts or too
+            many submissions being made by the same person.
+        </div>
+    </p>
+    <br>
+</div>
+{% endfor %}
+<h1 style="text-align: center">Assignments</h1>
+{% if session.title %}
+{% if session.title == "lecturer" or session.title == "admin"%}
+<br>
+<p style="text-align: center; padding: 20px,20px,20px,20px;">
+    <a class="button" href="/create">
+        Create New Assignment</a>
+</p>
+<br>
+{% endif %}
+{% for ass in assignments %}
+<!-- Template
+o Module
+o Title
+o Description
+o Files for download
+o Start datetime
+o End datetime
+o time limit
+o Submit
+o Allowed resubmit-->
+<div class="{{ass['Ass_Code']}}">
+    <div class="col s12 m6">
+        <div class="card" style="background-color:rgba(230,230,230);">
+            <div class="card-content">
+                <div style="text-align: center;">
+                    <p style="font-size: 40px;">
+                        <span id="title-module" class="card-title">{{ass['Title']}} - {{ass['module']}}</span>
+                    </p>
+                    <p class="thick">
+                        <p id="ass-code" style="color: rgb(84,26,40)">Assignment code -
+                            {{ass['Ass_Code']}}</p>
+                    </p>
+                    {% if session.title == "student" or session.title == "admin"%}
+                    {% if ass['Ass_Code'] in subs_made %}
+                    <p><i class="material-icons" style="color: green !important;">done</i>Submission Made</p>
+                    <br>
+                    <p><a class="button" href="/download_submission/{{ass['Ass_Code']}}/{{session.user}}">
+                        <i class="small material-icons">file_download</i>Download Submission</a></p>
+                    {% else %}
+                    <i class="material-icons" style="color: red !important;">close</i> You have not yet made a
+                    successful submission
+                    {% endif %}
+                    {% endif %}
+                </div>
+                <div style="font-size: 20px;">
+                    {% if ass['description'] != "" %}
+                    <p id="ass-start" class="thick" style="color: rgb(84,26,40)">Description: <br />
+                        <p style="color: black">{{ass['description']}}</p>
+                    </p>
+                    <br />
+                    {% endif %}
+                    <p id="ass-duration" class="thick" style="color: rgb(84,26,40)">Duration: <p style="color: black">
+                            {{ass['start_pretty']}}&nbsp;&mdash;&nbsp;{{ass['end_pretty']}}</p>
+                    </p>
+                    <br />
+                    {% if ass['git'] == "true" %}
+                    <p id="git" class="thick" style="color: rgb(84,26,40)">
+                        Git Link: <p> <a style="color: black !important"
+                                href="{{git_server}}/assessmentmanagementsystem/{{ass['module']}}/{{ass['Ass_Code']}}"><i
+                                    class="material-icons" style="color: #039be5;">cloud_upload</i>Repository</a>
+                        </p>
+                    </p>
+                    <br />
+                    {% endif %}
+                    {% if ass['git'] != "true" %}
+                    <p id="resubs-allowed" class="thick" style="color: rgb(84,26,40)">Submissions Available:
+                        <p style="color: black">
+                            {% if subs_allowed[ass['Ass_Code']] == "true" %}
+                            Unlimited
+                            {% elif subs_allowed[ass['Ass_Code']] == "false" %}
+                            None
+                            {% elif subs_allowed[ass['Ass_Code']] > 0%}
+                            {{subs_allowed[ass['Ass_Code']]}}
+                            {% else %}
+                            Unclear: Please speak to your lecturer
+                            {% endif %}
+                        </p>
+                    </p>
+                    <br />
+
+                    {% if session.title =="lecturer" or session.title == "admin" %}
+                    <p id="late-allowed" class="thick" style="color: rgb(84,26,40)">Late Submissions:
+                        <p style="color: black">
+                            {% if ass['allowed_late'] ==  "true" %}
+                            Allowed
+                            {% else %}
+                            Not Allowed
+                            {% endif %}
+                        </p>
+                        <p>
+                            {% if ass['allowed_late'] ==  "true" %}
+                            <a style="color:#039be5 !important" href="/toggle_late/{{ass['Ass_Code']}}/assignment">
+                                <i class="material-icons" style="color: red !important;">watch_later
+                                </i>
+                                Disallow Late Submissions</a>
+                            {% else %}
+                            <a style="color:#039be5 !important" href="/toggle_late/{{ass['Ass_Code']}}/assignment">
+                                <i class="material-icons" style="color: green !important;">watch_later
+                                </i>
+                                Allow Late Submissions</a>
+                            {% endif%}
+                        </p>
+                    </p>
+                    <br />
+                    {% endif %}
+
+                    {% if ass['allowed_late'] ==  "true" %}
+                    <p>
+                        <i class="material-icons" style="color: green !important;">lock_open</i>Submissions are Still
+                        Open
+                    </p>
+                    {% endif %}
+                    {% if session.title =="student" or session.title == "admin"  %}
+                    <p class="thick" id="resubs-allowed" style="color: rgb(84,26,40); font-size: 110%;"><i
+                            class="material-icons">new_releases</i> NOTE: <span style="color: black">Only
+                            files with a .tar.bz2 or .zip extension will be accepted. It is your responsibility to
+                            compress
+                            your submissions correctly.</span>
+                    </p>
+                    {% if ass['git'] != "true" %}
+                    {% if subs_allowed[ass['Ass_Code']] != "false" %}
+                    <!-- 
+                    TODO: CLI Instructions for  future
+                 -->
+                    <!-- <p>
+                    <label id="resubs-allowed" style="color: rgb(84,26,40)"> CLI instructions:</label>
+                    <p><label>Submission:</label>
+                        <li>Get Assignment: assignment &ltsuid&gt &ltassignment code&gt</li>
+                        <li>Get Assignment: assignment &ltsuid&gt &ltassignment code&gt</li>
+                    </p>
+                    <p><label>Environment:</label>
+                        <li>Start Assignment: assignment &ltsuid&gt start &ltassignment code&gt</li>
+                    </p>
+                </p> -->
+                    <form method=post enctype=multipart/form-data id="submission">
+                        <div class="file-field input-field">
+                            <input type=hidden name="ass_code" value="{{ass['Ass_Code']}}">
+                            <input type=hidden name="module_code" value="{{ass['module']}}">
+                            <div class="btn">
+                                <span>Upload Submission</span>
+                                <input type="file" name="submission_file_{{ass['Ass_Code']}}" accept=".tar.bz2, .zip"
+                                    required>
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" name="file_path">
+                            </div>
+                        </div>
+                </div>
+                <p style="text-align: center">
+                    <label>
+                        <input type="checkbox" name="Plagiarism" required />
+                        <span>
+                            I declare that I have read the SU Policy on Plagiarism,<br>and that I have abided by the
+                            rules.
+                        </span>
+                    </label>
+                    <br>
+                    <br>
+                    <label>
+                        <input type="checkbox" name="consent" required />
+                        <span>
+                            I have read and understood the declaration of consent in<br>
+                            the <a href="/consent" style="color: #039be5 !important;">permission form</a> and
+                            agree to take part in this research study,<br>
+                            as conducted by Michael Shepherd.
+                        </span>
+                    </label>
+                    <br>
+                    <br>
+
+                    <button class="button" type="submit" name="action">
+                        <i class="material-icons right">send</i> Submit
+                    </button>
+                </p>
+                </form>
+                {% endif %}
+                {% endif %}
+                {% endif %}
+                {% endif %}
+
+                {% if session.title =="lecturer" or session.title == "admin" or session.title == "marker" %}
+                <p style="font-size: 20px;padding:30px 30px 30px 30px;text-align: justify;">
+                    {% if ass['git'] != "true" %}
+                    <a class="button" href="/download_submissions/{{ass['Ass_Code']}}">
+                        Download Submissions</a>
+                    {% endif %}
+                    <a class="button" href="/report/{{ass['Ass_Code']}}">
+                        View Report</a>
+                </p>
+                {% endif %}
+            </div>
+            <div class="card-action" style="background-color: rgba(200,200,200,0.8);">
+                {% if ass['file'] == 'true'%}
+                <a id="file-path" href="/download/{{ass['Ass_Code']}}"
+                    style="font-size: 15pt; color: #039be5 !important;"><i
+                        class="small material-icons">file_download</i>Files
+                    for download</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+{% endif %}
+{% endblock %}

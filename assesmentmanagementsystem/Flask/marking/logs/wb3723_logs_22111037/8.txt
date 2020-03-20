@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "marking.py", line 2, in <module>
+    import wololo
+ImportError: No module named wololo

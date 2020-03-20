@@ -1,0 +1,159 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if ass['git'] == "true" %}
+<script>
+    setInterval(function () { window.location.reload(); }, 10000);
+</script>
+{% endif %}
+<style>
+    .table {
+        width: 100%;
+        /* border: 1px solid #eeeeee; */
+        background-color: #8c979a;
+        color: white;
+    }
+
+    .table-header {
+        display: flex;
+        width: 100%;
+        background: rgb(51, 51, 51);
+        padding: 18 0;
+    }
+
+    .table-row {
+        vertical-align: middle;
+        display: flex;
+        width: 100%;
+        height: 150%;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .table-data,
+    .header__item {
+        vertical-align: middle;
+        color: black;
+        flex: 1 1 20%;
+        text-align: center;
+        padding: 10 10;
+    }
+
+
+    .filter__link {
+        color: white;
+        text-decoration: none;
+        position: relative;
+        display: inline-block;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+</style>
+<h1 style="text-align: center">Reporting - {{ass['Title']}}</h1>
+{% if session.title == "lecturer" or session.title == "marker" or session.title == "admin" %}
+<p style="text-align: center;padding:10px 10px 10px 10px;">
+    <a type="submit" class="button" style="font-size: 200%" href="../../marking">
+        Mark Assignment</a>
+    <a type="submit" class="button" style="font-size: 200%" href="../../download_marking/{{ass['Ass_Code']}}">
+        Download Marking Logs</a>
+</p>
+<p style="text-align: center;">
+    {{stats['submissions']}} out of {{stats['students']}} students have submitted
+</p>
+<!-- Variable: Student number with logs atached as a list as {{ students }}-->
+<div class="table">
+    <div class="table-header">
+        <div class="header__item">
+            <a id="Student Number" class="filter__link filter__link--number" href="#">Student Number</a>
+        </div>
+        {% if ass['git'] == "true" %}
+        <div class="header__item">
+            <a id="Commits" class="filter__link filter__link--number" href="#">Commits</a>
+        </div>
+        {% endif %}
+        <div class="header__item">
+            <a id="Submissions" class="filter__link filter__link--number" href="#">Submissions</a>
+        </div>
+        <div class="header__item">
+            <a id="Submssion Time" class="filter__link filter__link--number" href="#">Submission Time</a>
+        </div>
+        <div class="header__item">
+            <a id="Submission IP" class="filter__link filter__link--number" href="#">Submission IP</a>
+        </div>
+        {% if ass['environment'] == "true" %}
+        <div class="header__item">
+            <a id="From Environment" class="filter__link filter__link--number" href="#">From Environment</a>
+        </div>
+        <div class="header__item">
+            <a id="Env_start" class="filter__link filter__link--number" href="#">Started Env</a>
+        </div>
+        <div class="header__item">
+            <a id="Env_end" class="filter__link filter__link--number" href="#">Stopped Env</a>
+        </div>
+        {% endif %}
+        {% if ass['git'] == "true" %}
+        <div class="header__item">
+            <a id="Pipeline Status" class="filter__link filter__link--number" href="#">Pipeline Status</a>
+        </div>
+        {% endif %}
+        <div class="header__item">
+            <a id="Download" class="filter__link filter__link--number" href="#">Download</a>
+        </div>
+    </div>
+    <div class="table-content">
+
+        {% for user in users %}
+        <div class="table-row">
+            <div class="table-data">{{user}}</div>
+            {% if ass['git'] == "true" %}
+            <div class="table-data">{{users[user][0]}}</div>
+            {% endif %}
+            <div class="table-data">{{users[user][1]}}</div>
+            <div class="table-data">{{users[user][2]}}</div>
+            <div class="table-data">{{users[user][4]}}</div>
+            {% if ass['environment'] == "true" %}
+            <div class="table-data">{{users[user][5]}}</div>
+            <div class="table-data">{{users[user][6]}}</div>
+            <div class="table-data">{{users[user][7]}}</div>
+            {% endif %}
+            {% if ass['git'] == "true" %}
+            <!--
+            All different pipeline statuses:
+             
+            pending
+            running
+            passed
+            failed
+            skipped
+            canceled
+            unknown
+            
+            -->
+            
+                {% if users[user][8] == "pending" %}
+                    <div class="table-data"><a href="{{users[user][9]}}"><i class="material-icons" style="color: goldenrod;">pause_circle_outline</i></a></div>
+                {% elif users[user][8] == "running" %}
+                    <div class="table-data"><a href="{{users[user][9]}}"><i class="material-icons" style="color: lightskyblue;">access_time</i></a></div>
+                {% elif users[user][8] == "success" %}
+                    <div class="table-data"><a href="{{users[user][9]}}"><i class="material-icons" style="color: green;">check_circle_outline</i></a></div>
+                {% elif users[user][8] == "failed" %}
+                    <div class="table-data"><a href="{{users[user][9]}}"><i class="material-icons" style="color: red;">highlight_off</i></a></div>
+                {% else %}
+                    <div class="table-data"><a href="{{users[user][9]}}">{{users[user][8]}}</a></div>
+                {% endif %}
+
+
+            {% endif %}
+            <div class="table-data">
+                {% if users[user][1] != "0" %}
+                <a type="submit" class="button" href="{{users[user][10]}}">
+                    <i class="material-icons">file_download</i>Submission</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<h1 style="text-align: center"> Only lecturers may make use of this feature </h1>
+{% endif %}
+{% endblock %}
