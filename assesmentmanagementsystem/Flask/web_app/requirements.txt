@@ -1,4 +1,4 @@
-certifi==2019.9.11
+certifi==2022.12.7
 chardet==3.0.4
 -e git://github.com/cameronbwhite/Flask-CAS.git@f85173938654cb9b9316a5c869000b74b008422e#egg=Flask_CAS
 Click==7.0
